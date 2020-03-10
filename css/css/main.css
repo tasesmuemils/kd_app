@@ -1,3 +1,43 @@
+/*Main style*/
+/*Colors*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
+html,
+body {
+  background-color: #E7E9EE;
+}
+
+/*Main Wrapper styling*/
+.main-wrapper {
+  background-color: #E7E9EE;
+  color: blue;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+}
+
+/*Navigation bar*/
+.navigation-wrapper {
+  display: grid;
+  justify-content: center;
+  padding: 0;
+}
+
+.navigation-bar {
+  background-color: #1C233C;
+  display: grid;
+  justify-content: center;
+}
+.navigation-bar ul {
+  padding: 5px;
+}
+.navigation-bar ul li {
+  list-style: none;
+}
 
 /*# sourceMappingURL=main.css.map */
