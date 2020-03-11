@@ -32,12 +32,33 @@ body {
   background-color: #1C233C;
   display: grid;
   justify-content: center;
+  border-radius: 25px;
 }
 .navigation-bar ul {
-  padding: 5px;
+  padding: 10px 0;
 }
 .navigation-bar ul li {
   list-style: none;
+  display: grid;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  transition: all 0.5s;
+}
+.navigation-bar ul li i {
+  color: #636A7F;
+  font-size: 17px;
+  color: #636A7F;
+  transition: all 0.5s;
+}
+.navigation-bar ul li:hover {
+  box-shadow: inset 3px 0px 0px 0px #56C3E6;
+  background-color: #172A45;
+  cursor: pointer;
+}
+.navigation-bar ul li:hover i {
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */
