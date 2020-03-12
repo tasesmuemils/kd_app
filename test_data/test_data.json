@@ -1,0 +1,46 @@
+[{
+        "group_id": 1,
+        "group_name": "Group '1'",
+        "students": [{
+            "id": 1,
+            "first_name": "Baird",
+            "last_name": "Gennerich",
+            "birth_date": "22.06.2015",
+            "gender": "Male",
+            "mothers_name": "Julienne",
+            "mothers_phone": "313-230-0514",
+            "fathers_name": "Shurlock",
+            "fathers_phone": "475-476-2378",
+            "notes": "intermediate"
+        }]
+    },
+    {
+        "group_id": 2,
+        "group_name": "Group '2'",
+        "students": [{
+                "id": 1,
+                "first_name": "Baird",
+                "last_name": "Gennerich",
+                "birth_date": "22.06.2015",
+                "gender": "Male",
+                "mothers_name": "Julienne",
+                "mothers_phone": "313-230-0514",
+                "fathers_name": "Shurlock",
+                "fathers_phone": "475-476-2378",
+                "notes": "intermediate"
+            },
+            {
+                "id": 1,
+                "first_name": "Baird",
+                "last_name": "Gennerich",
+                "birth_date": "22.06.2015",
+                "gender": "Male",
+                "mothers_name": "Julienne",
+                "mothers_phone": "313-230-0514",
+                "fathers_name": "Shurlock",
+                "fathers_phone": "475-476-2378",
+                "notes": "intermediate"
+            }
+        ]
+    }
+]
