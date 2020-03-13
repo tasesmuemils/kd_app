@@ -1,6 +1,7 @@
 [{
         "group_id": 1,
         "group_name": "Group '1'",
+        "group_icon": "<i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i>",
         "students": [{
             "id": 1,
             "first_name": "Baird",
@@ -17,6 +18,7 @@
     {
         "group_id": 2,
         "group_name": "Group '2'",
+        "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
         "students": [{
                 "id": 1,
                 "first_name": "Baird",

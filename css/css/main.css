@@ -4,7 +4,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
   font-family: "Inter", sans-serif;
 }
 
@@ -22,6 +21,7 @@ body {
 
 /*WRAPPER*/
 .wrapper {
+  width: 100vw;
   display: grid;
   grid-template-columns: 20% 80%;
 }
@@ -72,13 +72,29 @@ body {
 /*SLIDER*/
 .slider {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 300px);
   padding: 2em;
 }
 .slider .sliderCard {
   background-color: #ffffff;
-  margin: 30px;
+  margin: 20px;
+  padding: 20px;
   text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+.slider .sliderCard i {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 50%;
+}
+.slider .sliderCard h5 {
+  font-weight: 300;
+  font-size: 15px;
+  padding: 5px 0;
+}
+.slider .sliderCard span {
+  font-size: 30px;
 }
 
 /*SLIDER END*/
