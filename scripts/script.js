@@ -7,7 +7,6 @@ async function fetchData() {
   const data = await response.json();
 
   data.forEach(item => {
-    console.log(item.students);
     sliderData(item);
     groupList(item);
   });
@@ -26,14 +25,21 @@ function sliderData(groupData) {
   slider.insertAdjacentElement('beforeend', sliderInnerCard);
 }
 
+function genderTranform(gender) {
+  return gender === 'Male'
+    ? `<i class="fas fa-mars"></i>`
+    : `<i class="fas fa-venus"></i>`;
+}
+
 function groupList(groupData) {
   const groupTable = document.createElement('table');
+  groupTable.classList.add('table-style');
   groupData.students.forEach(student => {
     const studentRow = `
         <tr>
-          <td>${student.gender}</td>
-          <td>${student.first_name}</td>
-          <td>${student.last_name}</td>
+          <td>${genderTranform(student.gender)}</td>
+          <td>${student.first_name} ${student.last_name}</td>
+          <td>${student.birth_date}</td>
         </tr>
       `;
     groupTable.insertAdjacentHTML('beforeend', studentRow);

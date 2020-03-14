@@ -1,24 +1,7 @@
 [{
         "group_id": 1,
-        "group_name": "Group '1'",
+        "group_name": "Cirulisi",
         "group_icon": "<i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i>",
-        "students": [{
-            "id": 1,
-            "first_name": "Baird",
-            "last_name": "Gennerich",
-            "birth_date": "22.06.2015",
-            "gender": "Male",
-            "mothers_name": "Julienne",
-            "mothers_phone": "313-230-0514",
-            "fathers_name": "Shurlock",
-            "fathers_phone": "475-476-2378",
-            "notes": "intermediate"
-        }]
-    },
-    {
-        "group_id": 2,
-        "group_name": "Group '2'",
-        "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
         "students": [{
                 "id": 1,
                 "first_name": "Baird",
@@ -32,7 +15,49 @@
                 "notes": "intermediate"
             },
             {
+                "id": 3,
+                "first_name": "Cash",
+                "last_name": "Ockleshaw",
+                "birth_date": "22.01.2015",
+                "gender": "Female",
+                "mothers_name": "Cahra",
+                "mothers_phone": "256-750-5191",
+                "fathers_name": "Malcolm",
+                "fathers_phone": "976-228-0763",
+                "notes": "uniform"
+            },
+            {
+                "id": 4,
+                "first_name": "Rodi",
+                "last_name": "Coners",
+                "birth_date": "04.05.2015",
+                "gender": "Female",
+                "mothers_name": "Deane",
+                "mothers_phone": "584-621-8243",
+                "fathers_name": "Mannie",
+                "fathers_phone": "687-663-3920",
+                "notes": "intangible"
+            }
+        ]
+    },
+    {
+        "group_id": 2,
+        "group_name": "Narbuli",
+        "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
+        "students": [{
                 "id": 1,
+                "first_name": "Jase",
+                "last_name": "Ginsie",
+                "birth_date": "03.02.2017",
+                "gender": "Female",
+                "mothers_name": "Kippie",
+                "mothers_phone": "965-371-6426",
+                "fathers_name": "Brett",
+                "fathers_phone": "277-674-4588",
+                "notes": "fresh-thinking"
+            },
+            {
+                "id": 2,
                 "first_name": "Baird",
                 "last_name": "Gennerich",
                 "birth_date": "22.06.2015",

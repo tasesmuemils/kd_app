@@ -98,5 +98,16 @@ body {
 }
 
 /*SLIDER END*/
+/*TABLE*/
+.group-list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 60%;
+}
+.group-list .table-style {
+  padding: 10px;
+}
+
+/*TABLE END*/
 
 /*# sourceMappingURL=main.css.map */
