@@ -102,10 +102,33 @@ body {
 .group-list {
   display: grid;
   justify-content: center;
-  grid-template-columns: 60%;
+  grid-template-columns: 70%;
 }
 .group-list .table-style {
+  font-size: 20px;
   padding: 10px;
+  border-collapse: collapse;
+}
+.group-list .table-style tr > :first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin: 10px;
+}
+.group-list .table-style tr > :last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 10px;
+}
+.group-list .table-style td {
+  padding: 10px;
+}
+.group-list .table-style i {
+  font-size: 15px;
+  border-radius: 50%;
+}
+.group-list .table-style tr:hover {
+  background-color: #ffffff;
+  cursor: pointer;
 }
 
 /*TABLE END*/

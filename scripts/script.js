@@ -27,8 +27,8 @@ function sliderData(groupData) {
 
 function genderTranform(gender) {
   return gender === 'Male'
-    ? `<i class="fas fa-mars"></i>`
-    : `<i class="fas fa-venus"></i>`;
+    ? `<i class="fas fa-mars" style='background-color: #cbe4f9; color: #4C90C3; padding: 7px 9px;'></i>`
+    : `<i class="fas fa-venus" style='background: #f5e0f7; color:#ac7ab8; padding: 8px 11px;'></i>`;
 }
 
 function groupList(groupData) {
@@ -37,12 +37,19 @@ function groupList(groupData) {
   groupData.students.forEach(student => {
     const studentRow = `
         <tr>
-          <td>${genderTranform(student.gender)}</td>
-          <td>${student.first_name} ${student.last_name}</td>
-          <td>${student.birth_date}</td>
+          <td>${genderTranform(student.gender)} ${student.first_name} ${
+      student.last_name
+    }</td>
+          <td><i class="far fa-calendar-alt"></i>${student.birth_date}</td>
         </tr>
       `;
     groupTable.insertAdjacentHTML('beforeend', studentRow);
   });
   groupListEl.insertAdjacentElement('afterbegin', groupTable);
 }
+
+/* <tr>
+<td><div>${genderTranform(student.gender)}</div></td>
+<td>${student.first_name} ${student.last_name}</td>
+<td>${student.birth_date}</td>
+</tr> */
