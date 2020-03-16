@@ -82,6 +82,8 @@ body {
   text-align: center;
   border-radius: 15px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.5s;
 }
 .slider .sliderCard i {
   font-size: 20px;
@@ -95,6 +97,9 @@ body {
 }
 .slider .sliderCard span {
   font-size: 30px;
+}
+.slider .sliderCard:hover {
+  transform: translateY(-10px);
 }
 
 /*SLIDER END*/
