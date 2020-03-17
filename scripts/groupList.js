@@ -1,3 +1,5 @@
+import { GroupList } from './groupLists/newGroupTable.js';
+
 const slider = document.querySelector('.slider');
 const groupListEl = document.querySelector('.group-list');
 
@@ -38,59 +40,6 @@ function sliderData(groupData) {
   new GroupList(groupData, groupListEl);
 }
 
-function genderTranform(gender) {
-  return gender === 'Male'
-    ? `<i class="fas fa-mars" style='background-color: #cbe4f9; color: #4C90C3; padding: 7px 9px;'></i>`
-    : `<i class="fas fa-venus" style='background: #f5e0f7; color:#ac7ab8; padding: 8px 11px;'></i>`;
-}
-
 function sliderClickHandling(sliderWrapper) {
   sliderWrapper.childNodes.forEach(card => (card.dataset.clicked = 'false'));
 }
-
-function GroupList(groupData, tableWrapper) {
-  this.groupData = groupData;
-  this.tableWrapper = tableWrapper;
-
-  this.newTable(this.groupData);
-}
-
-GroupList.prototype.newTable = function(groupData) {
-  const groupTable = document.createElement('table');
-  groupTable.classList.add('table-style');
-  groupTable.style.display = 'none';
-  groupTable.setAttribute('data-group_name', `${groupData.group_name}`);
-  // groupTable.style.display = 'none';
-  groupData.students.forEach(student => {
-    const studentRow = `
-        <tr>
-          <td>${genderTranform(student.gender)} ${student.first_name} ${
-      student.last_name
-    }</td>
-          <td><i class="far fa-calendar-alt"></i>${student.birth_date}</td>
-        </tr>
-      `;
-    groupTable.insertAdjacentHTML('beforeend', studentRow);
-  });
-  this.tableWrapper.insertAdjacentElement('afterbegin', groupTable);
-};
-
-// function groupList(groupData) {
-//   const groupTable = document.createElement('table');
-//   groupTable.classList.add('table-style');
-//   groupTable.style.display = 'none';
-//   groupTable.setAttribute('data-group_name', `${groupData.group_name}`);
-//   // groupTable.style.display = 'none';
-//   groupData.students.forEach(student => {
-//     const studentRow = `
-//         <tr>
-//           <td>${genderTranform(student.gender)} ${student.first_name} ${
-//       student.last_name
-//     }</td>
-//           <td><i class="far fa-calendar-alt"></i>${student.birth_date}</td>
-//         </tr>
-//       `;
-//     groupTable.insertAdjacentHTML('beforeend', studentRow);
-//   });
-//   groupListEl.insertAdjacentElement('afterbegin', groupTable);
-// }

@@ -15,15 +15,14 @@ body {
 /*Main Wrapper styling*/
 .main-wrapper {
   background-color: #f7f7f7;
-  display: grid;
   align-items: center;
 }
 
 /*WRAPPER*/
 .wrapper {
-  width: 100vw;
+  width: 100%;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 15% 85%;
 }
 
 /*NAVIGATION BAR*/
@@ -34,17 +33,16 @@ body {
   align-items: center;
   padding: 0;
 }
-
-.navigation-bar {
+.navigation-wrapper .navigation-bar {
   background-color: #1C233C;
   display: grid;
   justify-content: center;
   border-radius: 25px;
 }
-.navigation-bar ul {
+.navigation-wrapper .navigation-bar ul {
   padding: 10px 0;
 }
-.navigation-bar ul li {
+.navigation-wrapper .navigation-bar ul li {
   list-style: none;
   display: grid;
   justify-content: center;
@@ -52,27 +50,34 @@ body {
   padding: 1rem;
   transition: all 0.5s;
 }
-.navigation-bar ul li i {
+.navigation-wrapper .navigation-bar ul li i {
   color: #636A7F;
   font-size: 17px;
   color: #636A7F;
   transition: all 0.5s;
 }
-.navigation-bar ul li:hover {
+.navigation-wrapper .navigation-bar ul li:hover {
   box-shadow: inset 3px 0px 0px 0px #56C3E6;
   background-color: #172A45;
   cursor: pointer;
 }
-.navigation-bar ul li:hover i {
+.navigation-wrapper .navigation-bar ul li:hover i {
   color: #FFFFFF;
   cursor: pointer;
 }
 
 /*NAVIGATION BAR END*/
+/*SIDE WRAPPER*/
+.side-wrapper {
+  justify-content: center;
+}
+
+/*SIDE WRAPPER END*/
 /*SLIDER*/
 .slider {
   display: grid;
-  grid-template-columns: repeat(4, 300px);
+  justify-content: center;
+  grid-template-columns: repeat(2, 300px);
   padding: 2em;
 }
 .slider .sliderCard {
@@ -110,30 +115,41 @@ body {
   grid-template-columns: 70%;
 }
 .group-list .table-style {
+  display: grid;
   font-size: 20px;
   padding: 10px;
-  border-collapse: collapse;
 }
-.group-list .table-style tr > :first-child {
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+.group-list .table-style .table-row {
+  display: flex;
+  flex-wrap: nowrap;
   margin: 10px;
+  transition: all 0.2s ease-in-out;
+  justify-content: space-between;
 }
-.group-list .table-style tr > :last-child {
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  margin: 10px;
+.group-list .table-style .table-row:last-child {
+  text-align: right;
 }
-.group-list .table-style td {
-  padding: 10px;
+.group-list .table-style .table-cell-wrapper {
+  display: flex;
 }
-.group-list .table-style i {
+.group-list .table-style .table-cell {
+  padding: 10px 20px;
+  text-align: right;
+}
+.group-list .table-style .table-cell i {
   font-size: 15px;
   border-radius: 50%;
 }
-.group-list .table-style tr:hover {
+.group-list .table-style .table-cell .age-icon {
+  color: black;
+  font-size: 20px;
+  padding: 0 10px;
+}
+.group-list .table-style .table-row:hover {
   background-color: #ffffff;
+  border-radius: 20px;
   cursor: pointer;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 /*TABLE END*/
