@@ -123,31 +123,28 @@ body {
   display: flex;
   flex-wrap: nowrap;
   margin: 10px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in;
   justify-content: space-between;
 }
-.group-list .table-style .table-row:last-child {
-  text-align: right;
-}
-.group-list .table-style .table-cell-wrapper {
+.group-list .table-style .table-row .table-cell-wrapper {
   display: flex;
 }
-.group-list .table-style .table-cell {
-  padding: 10px 20px;
-  text-align: right;
+.group-list .table-style .table-row .table-cell {
+  padding: 10px 10px;
 }
-.group-list .table-style .table-cell i {
+.group-list .table-style .table-row .table-cell i {
   font-size: 15px;
   border-radius: 50%;
 }
-.group-list .table-style .table-cell .age-icon {
+.group-list .table-style .table-row .table-cell .age-icon {
   color: black;
   font-size: 20px;
   padding: 0 10px;
+  border-radius: 0%;
 }
 .group-list .table-style .table-row:hover {
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.1);
 }

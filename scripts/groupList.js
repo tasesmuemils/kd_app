@@ -27,7 +27,6 @@ function sliderData(groupData) {
       if (table.dataset.group_name === groupData.group_name) {
         table.style.display = 'grid';
       }
-      console.log(table.dataset.group_name, groupData.group_name);
     });
   });
   sliderInnerCard.innerHTML = `

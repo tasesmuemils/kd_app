@@ -1,4 +1,4 @@
-import { genderTranform } from '../utils/utils.js';
+import { genderTranform, convertDatoToAge } from '../utils/utils.js';
 
 export function GroupList(groupData, tableWrapper) {
   this.groupData = groupData;
@@ -21,9 +21,9 @@ GroupList.prototype.newTable = function(groupData) {
       student.first_name
     } ${student.last_name}</div>
             </div>
-            <div class="table-cell"><i class="age-icon far fa-calendar-alt"></i>${
+            <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${convertDatoToAge(
               student.birth_date
-            }</div>
+            )}</div>
           </div>
         `;
     groupTable.insertAdjacentHTML('beforeend', studentRow);
