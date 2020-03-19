@@ -1,4 +1,5 @@
 import { genderTranform, convertDatoToAge } from '../utils/utils.js';
+import { groupModal } from './GroupModal.js';
 
 export function GroupList(groupData, tableWrapper) {
   this.groupData = groupData;
@@ -7,14 +8,20 @@ export function GroupList(groupData, tableWrapper) {
 }
 
 GroupList.prototype.newTable = function(groupData) {
+  // Create Table
   const groupTable = document.createElement('div');
   groupTable.classList.add('table-style');
   groupTable.style.display = 'none';
   groupTable.setAttribute('data-group_name', `${groupData.group_name}`);
-  // groupTable.style.display = 'none';
+
+  // For each student create table row
   groupData.students.forEach((student, i) => {
-    const studentRow = `
-          <div class="table-row">
+    const studentRow = document.createElement('div');
+    studentRow.classList.add('table-row');
+    studentRow.addEventListener('click', () =>
+      groupModal(document.querySelector('.modal'), student)
+    );
+    const studentRowContent = `
             <div class="table-cell-wrapper">
                 <div class="table-cell">${i + 1}</div>
                 <div class="table-cell">${genderTranform(student.gender)} ${
@@ -24,9 +31,11 @@ GroupList.prototype.newTable = function(groupData) {
             <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${convertDatoToAge(
               student.birth_date
             )}</div>
-          </div>
         `;
-    groupTable.insertAdjacentHTML('beforeend', studentRow);
+
+    // Append row content to row and row to table
+    studentRow.insertAdjacentHTML('beforeend', studentRowContent);
+    groupTable.insertAdjacentElement('beforeend', studentRow);
   });
   this.tableWrapper.insertAdjacentElement('afterbegin', groupTable);
 };

@@ -17,6 +17,5 @@ export function convertDatoToAge(birthdate) {
   const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
   const years = Math.floor(months / 12);
   const month = months % 12;
-  console.log(convertBirthDate);
   return `${years} years and ${month} months old`;
 }

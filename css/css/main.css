@@ -12,12 +12,32 @@ body {
   background-color: #f7f7f7;
 }
 
-/*Main Wrapper styling*/
+/*MAIN WRAPPER*/
 .main-wrapper {
   background-color: #f7f7f7;
   align-items: center;
 }
 
+/*MODAL*/
+.modal {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.modal-open {
+  pointer-events: all;
+  opacity: 1;
+}
+
+/*MODAL END*/
 /*WRAPPER*/
 .wrapper {
   width: 100%;

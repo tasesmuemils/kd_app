@@ -3,17 +3,9 @@ import { GroupList } from './groupLists/newGroupTable.js';
 const slider = document.querySelector('.slider');
 const groupListEl = document.querySelector('.group-list');
 
-async function fetchData() {
-  const url = '../test_data/test_data.json';
-  const response = await fetch(url);
-  const data = await response.json();
-
-  data.forEach(item => {
-    sliderData(item);
-  });
+function sliderClickHandling(sliderWrapper) {
+  sliderWrapper.childNodes.forEach(card => (card.dataset.clicked = 'false'));
 }
-
-fetchData();
 
 function sliderData(groupData) {
   const sliderInnerCard = document.createElement('div');
@@ -39,6 +31,14 @@ function sliderData(groupData) {
   new GroupList(groupData, groupListEl);
 }
 
-function sliderClickHandling(sliderWrapper) {
-  sliderWrapper.childNodes.forEach(card => (card.dataset.clicked = 'false'));
+async function fetchData() {
+  const url = '../test_data/test_data.json';
+  const response = await fetch(url);
+  const data = await response.json();
+
+  data.forEach(item => {
+    sliderData(item);
+  });
 }
+
+fetchData();
