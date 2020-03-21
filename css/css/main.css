@@ -115,7 +115,7 @@ body {
 }
 .navigation-wrapper .navigation-bar ul li i {
   color: #636A7F;
-  font-size: 17px;
+  font-size: 25px;
   color: #636A7F;
   transition: all 0.5s;
 }
@@ -125,8 +125,15 @@ body {
   cursor: pointer;
 }
 .navigation-wrapper .navigation-bar ul li:hover i {
-  color: #FFFFFF;
+  color: #F1F5FC;
   cursor: pointer;
+}
+.navigation-wrapper .navigation-bar ul .logo img {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #56C3E6;
 }
 
 /*NAVIGATION BAR END*/
@@ -136,6 +143,36 @@ body {
 }
 
 /*SIDE WRAPPER END*/
+/*HEADER*/
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+}
+.header .management-items {
+  display: flex;
+  padding: 20px;
+}
+.header .management-items .wl-add-item {
+  background-color: #1a233c;
+  color: #F1F5FC;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border: none;
+  transition: all 0.2s ease-out;
+}
+.header .management-items .wl-add-item i {
+  margin-right: 10px;
+}
+.header .management-items .wl-add-item:hover {
+  transform: translateY(-3px);
+}
+
+/*HEADER*/
 /*SLIDER*/
 .slider {
   display: grid;
@@ -214,5 +251,6 @@ body {
 }
 
 /*TABLE END*/
+/**/
 
 /*# sourceMappingURL=main.css.map */
