@@ -164,6 +164,7 @@ body {
   letter-spacing: 2px;
   border: none;
   transition: all 0.2s ease-out;
+  cursor: pointer;
 }
 .header .management-items .wl-add-item i {
   margin-right: 10px;

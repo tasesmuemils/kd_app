@@ -27,7 +27,7 @@ export function groupModal(modal, modalData) {
   modalClose(modal, innerModal);
 }
 
-function modalClose(modal, innerModal) {
+export function modalClose(modal, innerModal) {
   const closeModalEl = document.createElement('div');
   closeModalEl.classList.add('modal-close');
   closeModalEl.textContent = 'X';
