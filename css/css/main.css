@@ -252,6 +252,25 @@ body {
 }
 
 /*TABLE END*/
-/**/
+/*FORM*/
+.as-form {
+  text-align: center;
+}
+.as-form input {
+  background-color: transparent;
+  margin: 20px;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #1a233c;
+}
+.as-form .form-child-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0.5rem;
+}
+
+/*FORM END*/
 
 /*# sourceMappingURL=main.css.map */

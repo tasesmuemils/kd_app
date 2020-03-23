@@ -32,8 +32,9 @@ function sliderData(groupData) {
 }
 
 async function fetchData() {
-  const url = '../test_data/test_data.json';
-  const response = await fetch(url);
+  const urlGroups = 'http://localhost:3000/groups';
+  const response = await fetch(urlGroups);
+  console.log(response);
   const data = await response.json();
 
   data.forEach(item => {

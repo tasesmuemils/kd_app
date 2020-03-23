@@ -7,15 +7,12 @@ function openForm() {
   formModal.classList.add('modal-open');
   const innerFormModal = formModal.firstElementChild;
   innerFormModal.innerHTML = `
-    <form>  
+    <form class='as-form'>  
       <h4>ADD STUDENT TO WAITING LIST</h4>
       <div class='form-child-info'>
         <input type='text' name='first_name' placeholder='Name'>
         <input type='text' name='last_name' placeholder='Last Name'>
-        <div class='form-birthday'>
-          <label>Birthday</label>
-          <input type='date' name='birthday'>
-        </div>
+        <input type='date' name='birthday'>
       </div>
       <div class='form-parent-info'>
         <input type='text' name='mother_name' placeholder='Mothers Name'>
