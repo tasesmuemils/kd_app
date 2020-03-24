@@ -12,13 +12,17 @@ function openForm() {
       <div class='form-child-info'>
         <input type='text' name='first_name' placeholder='Name'>
         <input type='text' name='last_name' placeholder='Last Name'>
-        <input type='date' name='birthday'>
+        <input type='text' name='birthday' placeholder='Birthday'>
       </div>
       <div class='form-parent-info'>
-        <input type='text' name='mother_name' placeholder='Mothers Name'>
-        <input type='tel' name='mother_phone' placeholder='Mothers Phone Number' pattern='[0-9]' required>
-        <input type='text' name='father_name' placeholder='Fathers Name'>
-        <input type='tel' name='father_phone' placeholder='Fathers Phone Number' pattern='[0-9]' required>
+        <div class='fp-mother'>
+          <input type='text' name='mother_name' placeholder='Mothers Name'>
+          <input type='tel' name='mother_phone' placeholder='Mothers Phone Number' pattern='[0-9]'>
+        </div>
+        <div class='fp-father'>
+          <input type='text' name='father_name' placeholder='Fathers Name'>
+          <input type='tel' name='father_phone' placeholder='Fathers Phone Number' pattern='[0-9]'>
+        </div>
       </div>
       <div class='form-notes'>
         <textarea placeholde='Notes' rows='4' cols='50'></textarea>
