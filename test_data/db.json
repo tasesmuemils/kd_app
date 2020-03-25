@@ -1,243 +1,260 @@
 {
-    "groups": [{
-            "group_id": 1,
-            "group_name": "Cirulisi",
-            "group_icon": "<i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i>",
-            "students": [{
-                    "id": 1,
-                    "first_name": "Baird",
-                    "last_name": "Gennerich",
-                    "birth_date": "22.06.2015",
-                    "gender": "Male",
-                    "mothers_name": "Julienne",
-                    "mothers_phone": "313-230-0514",
-                    "fathers_name": "Shurlock",
-                    "fathers_phone": "475-476-2378",
-                    "notes": "intermediate"
-                },
-                {
-                    "id": 2,
-                    "first_name": "Cash",
-                    "last_name": "Ockleshaw",
-                    "birth_date": "22.01.2015",
-                    "gender": "Female",
-                    "mothers_name": "Cahra",
-                    "mothers_phone": "256-750-5191",
-                    "fathers_name": "Malcolm",
-                    "fathers_phone": "976-228-0763",
-                    "notes": "uniform"
-                },
-                {
-                    "id": 3,
-                    "first_name": "Rodi",
-                    "last_name": "Coners",
-                    "birth_date": "04.05.2015",
-                    "gender": "Female",
-                    "mothers_name": "Deane",
-                    "mothers_phone": "584-621-8243",
-                    "fathers_name": "Mannie",
-                    "fathers_phone": "687-663-3920",
-                    "notes": "intangible"
-                },
-                {
-                    "id": 10,
-                    "first_name": "Brand",
-                    "last_name": "Wooding",
-                    "birth_date": "17.10.2016",
-                    "gender": "Male",
-                    "mothers_name": "Liana",
-                    "mothers_phone": "734-574-4550",
-                    "fathers_name": "Billie",
-                    "fathers_phone": "403-508-5661",
-                    "notes": "Up-sized"
-                },
-                {
-                    "id": 11,
-                    "first_name": "Ripley",
-                    "last_name": "Murley",
-                    "birth_date": "09.07.2016",
-                    "gender": "Male",
-                    "mothers_name": "Nelle",
-                    "mothers_phone": "641-151-4448",
-                    "fathers_name": "Mikel",
-                    "fathers_phone": "655-644-6198",
-                    "notes": "complexity"
-                },
-                {
-                    "id": 12,
-                    "first_name": "Allina",
-                    "last_name": "Carlton",
-                    "birth_date": "21.11.2016",
-                    "gender": "Female",
-                    "mothers_name": "Revkah",
-                    "mothers_phone": "971-170-7636",
-                    "fathers_name": "Torr",
-                    "fathers_phone": "263-126-4592",
-                    "notes": "Multi-layered"
-                },
-                {
-                    "id": 13,
-                    "first_name": "Travus",
-                    "last_name": "Christy",
-                    "birth_date": "10.09.2015",
-                    "gender": "Male",
-                    "mothers_name": "Eveline",
-                    "mothers_phone": "428-881-3930",
-                    "fathers_name": "Delmer",
-                    "fathers_phone": "158-574-3489",
-                    "notes": "capacity"
-                },
-                {
-                    "id": 14,
-                    "first_name": "Alfy",
-                    "last_name": "Beardmore",
-                    "birth_date": "20.07.2016",
-                    "gender": "Male",
-                    "mothers_name": "Jillane",
-                    "mothers_phone": "385-788-1397",
-                    "fathers_name": "Saleem",
-                    "fathers_phone": "123-219-6944",
-                    "notes": "clear-thinking"
-                },
-                {
-                    "id": 15,
-                    "first_name": "Weston",
-                    "last_name": "Innis",
-                    "birth_date": "01.08.2016",
-                    "gender": "Male",
-                    "mothers_name": "Vinny",
-                    "mothers_phone": "416-105-1755",
-                    "fathers_name": "Noll",
-                    "fathers_phone": "963-575-8601",
-                    "notes": "analyzing"
-                },
-                {
-                    "id": 16,
-                    "first_name": "Ev",
-                    "last_name": "Rickett",
-                    "birth_date": "20.01.2015",
-                    "gender": "Male",
-                    "mothers_name": "Jeanette",
-                    "mothers_phone": "937-189-2538",
-                    "fathers_name": "Vinson",
-                    "fathers_phone": "229-868-4340",
-                    "notes": "optimizing"
-                }
-            ]
+  "groups": [
+    {
+      "group_id": 1,
+      "group_name": "Cirulisi",
+      "group_icon": "<i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i>",
+      "students": [
+        {
+          "id": 1,
+          "first_name": "Baird",
+          "last_name": "Gennerich",
+          "birth_date": "22.06.2015",
+          "gender": "Male",
+          "mothers_name": "Julienne",
+          "mothers_phone": "313-230-0514",
+          "fathers_name": "Shurlock",
+          "fathers_phone": "475-476-2378",
+          "notes": "intermediate"
         },
         {
-            "group_id": 2,
-            "group_name": "Narbuli",
-            "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
-            "students": [{
-                    "id": 1,
-                    "first_name": "Jase",
-                    "last_name": "Ginsie",
-                    "birth_date": "03.02.2017",
-                    "gender": "Female",
-                    "mothers_name": "Kippie",
-                    "mothers_phone": "965-371-6426",
-                    "fathers_name": "Brett",
-                    "fathers_phone": "277-674-4588",
-                    "notes": "fresh-thinking"
-                },
-                {
-                    "id": 2,
-                    "first_name": "Baird",
-                    "last_name": "Gennerich",
-                    "birth_date": "22.06.2015",
-                    "gender": "Male",
-                    "mothers_name": "Julienne",
-                    "mothers_phone": "313-230-0514",
-                    "fathers_name": "Shurlock",
-                    "fathers_phone": "475-476-2378",
-                    "notes": "intermediate"
-                },
-                {
-                    "id": 3,
-                    "first_name": "Cash",
-                    "last_name": "Ockleshaw",
-                    "birth_date": "22.01.2015",
-                    "gender": "Male",
-                    "mothers_name": "Cahra",
-                    "mothers_phone": "256-750-5191",
-                    "fathers_name": "Malcolm",
-                    "fathers_phone": "976-228-0763",
-                    "notes": "uniform"
-                },
-                {
-                    "id": 4,
-                    "first_name": "Rodi",
-                    "last_name": "Coners",
-                    "birth_date": "04.05.2015",
-                    "gender": "Female",
-                    "mothers_name": "Deane",
-                    "mothers_phone": "584-621-8243",
-                    "fathers_name": "Mannie",
-                    "fathers_phone": "687-663-3920",
-                    "notes": "intangible"
-                },
-                {
-                    "id": 5,
-                    "first_name": "Jack",
-                    "last_name": "Longforth",
-                    "birth_date": "29.06.2016",
-                    "gender": "Male",
-                    "mothers_name": "Sandye",
-                    "mothers_phone": "573-677-1719",
-                    "fathers_name": "Moishe",
-                    "fathers_phone": "709-616-2801",
-                    "notes": "system-worthy"
-                },
-                {
-                    "id": 6,
-                    "first_name": "Imogene",
-                    "last_name": "Yurocjkin",
-                    "birth_date": "28.05.2016",
-                    "gender": "Female",
-                    "mothers_name": "Anne-corinne",
-                    "mothers_phone": "253-340-2532",
-                    "fathers_name": "Hersh",
-                    "fathers_phone": "836-564-4892",
-                    "notes": "process improvement"
-                },
-                {
-                    "id": 7,
-                    "first_name": "Lacie",
-                    "last_name": "Hanley",
-                    "birth_date": "03.03.2016",
-                    "gender": "Female",
-                    "mothers_name": "Morgan",
-                    "mothers_phone": "847-184-7886",
-                    "fathers_name": "Malchy",
-                    "fathers_phone": "143-907-3446",
-                    "notes": "human-resource"
-                },
-                {
-                    "id": 8,
-                    "first_name": "Mercedes",
-                    "last_name": "Trevon",
-                    "birth_date": "22.11.2016",
-                    "gender": "Female",
-                    "mothers_name": "Dorris",
-                    "mothers_phone": "202-201-2463",
-                    "fathers_name": "Niven",
-                    "fathers_phone": "382-359-5549",
-                    "notes": "Pre-emptive"
-                },
-                {
-                    "id": 9,
-                    "first_name": "Gaynor",
-                    "last_name": "Sparshutt",
-                    "birth_date": "12.02.2015",
-                    "gender": "Female",
-                    "mothers_name": "Vally",
-                    "mothers_phone": "122-325-2857",
-                    "fathers_name": "Giffie",
-                    "fathers_phone": "299-244-4959",
-                    "notes": "bifurcated"
-                }
-            ]
+          "id": 2,
+          "first_name": "Cash",
+          "last_name": "Ockleshaw",
+          "birth_date": "22.01.2015",
+          "gender": "Female",
+          "mothers_name": "Cahra",
+          "mothers_phone": "256-750-5191",
+          "fathers_name": "Malcolm",
+          "fathers_phone": "976-228-0763",
+          "notes": "uniform"
+        },
+        {
+          "id": 3,
+          "first_name": "Rodi",
+          "last_name": "Coners",
+          "birth_date": "04.05.2015",
+          "gender": "Female",
+          "mothers_name": "Deane",
+          "mothers_phone": "584-621-8243",
+          "fathers_name": "Mannie",
+          "fathers_phone": "687-663-3920",
+          "notes": "intangible"
+        },
+        {
+          "id": 10,
+          "first_name": "Brand",
+          "last_name": "Wooding",
+          "birth_date": "17.10.2016",
+          "gender": "Male",
+          "mothers_name": "Liana",
+          "mothers_phone": "734-574-4550",
+          "fathers_name": "Billie",
+          "fathers_phone": "403-508-5661",
+          "notes": "Up-sized"
+        },
+        {
+          "id": 11,
+          "first_name": "Ripley",
+          "last_name": "Murley",
+          "birth_date": "09.07.2016",
+          "gender": "Male",
+          "mothers_name": "Nelle",
+          "mothers_phone": "641-151-4448",
+          "fathers_name": "Mikel",
+          "fathers_phone": "655-644-6198",
+          "notes": "complexity"
+        },
+        {
+          "id": 12,
+          "first_name": "Allina",
+          "last_name": "Carlton",
+          "birth_date": "21.11.2016",
+          "gender": "Female",
+          "mothers_name": "Revkah",
+          "mothers_phone": "971-170-7636",
+          "fathers_name": "Torr",
+          "fathers_phone": "263-126-4592",
+          "notes": "Multi-layered"
+        },
+        {
+          "id": 13,
+          "first_name": "Travus",
+          "last_name": "Christy",
+          "birth_date": "10.09.2015",
+          "gender": "Male",
+          "mothers_name": "Eveline",
+          "mothers_phone": "428-881-3930",
+          "fathers_name": "Delmer",
+          "fathers_phone": "158-574-3489",
+          "notes": "capacity"
+        },
+        {
+          "id": 14,
+          "first_name": "Alfy",
+          "last_name": "Beardmore",
+          "birth_date": "20.07.2016",
+          "gender": "Male",
+          "mothers_name": "Jillane",
+          "mothers_phone": "385-788-1397",
+          "fathers_name": "Saleem",
+          "fathers_phone": "123-219-6944",
+          "notes": "clear-thinking"
+        },
+        {
+          "id": 15,
+          "first_name": "Weston",
+          "last_name": "Innis",
+          "birth_date": "01.08.2016",
+          "gender": "Male",
+          "mothers_name": "Vinny",
+          "mothers_phone": "416-105-1755",
+          "fathers_name": "Noll",
+          "fathers_phone": "963-575-8601",
+          "notes": "analyzing"
+        },
+        {
+          "id": 16,
+          "first_name": "Ev",
+          "last_name": "Rickett",
+          "birth_date": "20.01.2015",
+          "gender": "Male",
+          "mothers_name": "Jeanette",
+          "mothers_phone": "937-189-2538",
+          "fathers_name": "Vinson",
+          "fathers_phone": "229-868-4340",
+          "notes": "optimizing"
         }
-    ]
+      ]
+    },
+    {
+      "group_id": 2,
+      "group_name": "Narbuli",
+      "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
+      "students": [
+        {
+          "id": 1,
+          "first_name": "Jase",
+          "last_name": "Ginsie",
+          "birth_date": "03.02.2017",
+          "gender": "Female",
+          "mothers_name": "Kippie",
+          "mothers_phone": "965-371-6426",
+          "fathers_name": "Brett",
+          "fathers_phone": "277-674-4588",
+          "notes": "fresh-thinking"
+        },
+        {
+          "id": 2,
+          "first_name": "Baird",
+          "last_name": "Gennerich",
+          "birth_date": "22.06.2015",
+          "gender": "Male",
+          "mothers_name": "Julienne",
+          "mothers_phone": "313-230-0514",
+          "fathers_name": "Shurlock",
+          "fathers_phone": "475-476-2378",
+          "notes": "intermediate"
+        },
+        {
+          "id": 3,
+          "first_name": "Cash",
+          "last_name": "Ockleshaw",
+          "birth_date": "22.01.2015",
+          "gender": "Male",
+          "mothers_name": "Cahra",
+          "mothers_phone": "256-750-5191",
+          "fathers_name": "Malcolm",
+          "fathers_phone": "976-228-0763",
+          "notes": "uniform"
+        },
+        {
+          "id": 4,
+          "first_name": "Rodi",
+          "last_name": "Coners",
+          "birth_date": "04.05.2015",
+          "gender": "Female",
+          "mothers_name": "Deane",
+          "mothers_phone": "584-621-8243",
+          "fathers_name": "Mannie",
+          "fathers_phone": "687-663-3920",
+          "notes": "intangible"
+        },
+        {
+          "id": 5,
+          "first_name": "Jack",
+          "last_name": "Longforth",
+          "birth_date": "29.06.2016",
+          "gender": "Male",
+          "mothers_name": "Sandye",
+          "mothers_phone": "573-677-1719",
+          "fathers_name": "Moishe",
+          "fathers_phone": "709-616-2801",
+          "notes": "system-worthy"
+        },
+        {
+          "id": 6,
+          "first_name": "Imogene",
+          "last_name": "Yurocjkin",
+          "birth_date": "28.05.2016",
+          "gender": "Female",
+          "mothers_name": "Anne-corinne",
+          "mothers_phone": "253-340-2532",
+          "fathers_name": "Hersh",
+          "fathers_phone": "836-564-4892",
+          "notes": "process improvement"
+        },
+        {
+          "id": 7,
+          "first_name": "Lacie",
+          "last_name": "Hanley",
+          "birth_date": "03.03.2016",
+          "gender": "Female",
+          "mothers_name": "Morgan",
+          "mothers_phone": "847-184-7886",
+          "fathers_name": "Malchy",
+          "fathers_phone": "143-907-3446",
+          "notes": "human-resource"
+        },
+        {
+          "id": 8,
+          "first_name": "Mercedes",
+          "last_name": "Trevon",
+          "birth_date": "22.11.2016",
+          "gender": "Female",
+          "mothers_name": "Dorris",
+          "mothers_phone": "202-201-2463",
+          "fathers_name": "Niven",
+          "fathers_phone": "382-359-5549",
+          "notes": "Pre-emptive"
+        },
+        {
+          "id": 9,
+          "first_name": "Gaynor",
+          "last_name": "Sparshutt",
+          "birth_date": "12.02.2015",
+          "gender": "Female",
+          "mothers_name": "Vally",
+          "mothers_phone": "122-325-2857",
+          "fathers_name": "Giffie",
+          "fathers_phone": "299-244-4959",
+          "notes": "bifurcated"
+        }
+      ]
+    }
+  ],
+  "waiting-list": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    }
+  ]
 }
