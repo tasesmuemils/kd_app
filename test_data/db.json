@@ -255,6 +255,26 @@
     },
     {
       "id": 4
+    },
+    {
+      "first_name": "Ekils",
+      "last_name": "Misina",
+      "birthday": "2212",
+      "mother_name": "test",
+      "father_name": "tests",
+      "notes": "Testins",
+      "id": 5
+    },
+    {
+      "first_name": "Vienalga",
+      "last_name": "Error",
+      "birthday": "02.03.2020",
+      "mother_name": "Ieva",
+      "mother_phone": "1",
+      "father_name": "Jekabs",
+      "father_phone": "2",
+      "notes": "Smird",
+      "id": 6
     }
   ]
 }
