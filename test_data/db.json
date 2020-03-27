@@ -243,38 +243,28 @@
       ]
     }
   ],
-  "waiting-list": [
+  "waiting_list": [
     {
+      "first_name": "Emils",
+      "last_name": "Bisenieks",
+      "birthday": "09.06.1993",
+      "mother_name": "Ilze",
+      "mother_phone": "1",
+      "father_name": "Sandris",
+      "father_phone": "2",
+      "notes": "Resnis",
       "id": 1
     },
     {
-      "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "first_name": "Ekils",
-      "last_name": "Misina",
-      "birthday": "2212",
-      "mother_name": "test",
-      "father_name": "tests",
-      "notes": "Testins",
-      "id": 5
-    },
-    {
-      "first_name": "Vienalga",
-      "last_name": "Error",
-      "birthday": "02.03.2020",
-      "mother_name": "Ieva",
+      "first_name": "osis",
+      "last_name": "test",
+      "birthday": "test",
+      "mother_name": "tes",
       "mother_phone": "1",
-      "father_name": "Jekabs",
-      "father_phone": "2",
-      "notes": "Smird",
-      "id": 6
+      "father_name": "test",
+      "father_phone": "1",
+      "notes": "est",
+      "id": 2
     }
   ]
 }
