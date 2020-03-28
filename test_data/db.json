@@ -265,6 +265,17 @@
       "father_phone": "1",
       "notes": "est",
       "id": 2
+    },
+    {
+      "first_name": "Liva",
+      "last_name": "Misina",
+      "birthday": "12.08.1996",
+      "mother_name": "Guna",
+      "mother_phone": "1",
+      "father_name": "Gunars",
+      "father_phone": "2",
+      "notes": "TESTINS",
+      "id": 3
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { genderTranform, convertDatoToAge } from '../utils/utils.js';
 import { groupModal } from './GroupModal.js';
 
+// Create GroupList Object
 export function GroupList(groupData, tableWrapper) {
   this.groupData = groupData;
   this.tableWrapper = tableWrapper;
@@ -8,7 +9,7 @@ export function GroupList(groupData, tableWrapper) {
 }
 
 GroupList.prototype.newTable = function(groupData) {
-  // Create Table
+  // Creates Table
   const groupTable = document.createElement('div');
   groupTable.classList.add('table-style');
   groupTable.style.display = 'none';

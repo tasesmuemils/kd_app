@@ -1,9 +1,13 @@
+/* UTILS */
+
+// Transforms gender string to icon
 export function genderTranform(gender) {
   return gender === 'Male'
     ? `<i class="fas fa-mars" style='background-color: #cbe4f9; color: #4C90C3; padding: 7px 9px;'></i>`
     : `<i class="fas fa-venus" style='background: #f5e0f7; color:#ac7ab8; padding: 8px 11px;'></i>`;
 }
 
+// Tranforms date to dd.mm.yyyy
 export function convertDatoToAge(birthdate) {
   const convertBirthDate = new Date(
     birthdate
@@ -18,4 +22,29 @@ export function convertDatoToAge(birthdate) {
   const years = Math.floor(months / 12);
   const month = months % 12;
   return `${years} years and ${month} months old`;
+}
+
+// Gets input values form form and tranforms them in to key/values for object
+export function getKeyValuesPairs(form) {
+  const inputsArray = [...form.querySelectorAll('input')];
+  const emptyObject = {};
+  inputsArray
+    .filter(input => input.type === 'text' || input.type === 'tel')
+    .map(input => {
+      const key = input.name;
+      return (emptyObject[key] = `${input.value}`);
+    });
+  console.log(emptyObject);
+  return emptyObject;
+}
+
+// Closes modal
+export function modalClose(modal, innerModal) {
+  const closeModalEl = document.createElement('div');
+  closeModalEl.classList.add('modal-close');
+  closeModalEl.textContent = 'X';
+  closeModalEl.addEventListener('click', () => {
+    modal.classList.remove('modal-open');
+  });
+  innerModal.insertAdjacentElement('beforeend', closeModalEl);
 }

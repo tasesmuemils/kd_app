@@ -1,29 +1,11 @@
-import { modalClose } from '../groupLists/GroupModal.js';
-import { GroupList } from '../groupLists/newGroupTable.js';
+import { getKeyValuesPairs, modalClose } from '../utils/utils.js';
 
 const addItem = document.querySelector('.wl-add-item');
 const formModal = document.querySelector('.modal');
 const innerFormModal = formModal.firstElementChild;
 const formSubmit = document.querySelector('.as-form');
-const groupListEl = document.querySelector('.group-list');
-// console.log([...formSubmit.children]);
 
-function getKeyValuesPairs(form) {
-  const inputsArray = [...form.children];
-  const emptyObject = {};
-  inputsArray
-    .filter(
-      input => input.type === 'text' || input.type === 'tel'
-      // return input;
-    )
-    .map(input => {
-      const key = input.name;
-      return (emptyObject[key] = `${input.value}`);
-    });
-  console.log(emptyObject);
-  return emptyObject;
-}
-
+// Submits waiting lists form data to server
 function formSubmitData(e) {
   e.preventDefault();
 
@@ -37,6 +19,7 @@ function formSubmitData(e) {
   formModal.classList.remove('modal-open');
 }
 
+// Getting waiting lists data from server
 async function fetchData() {
   const urlGroups = 'http://localhost:3000/waiting_list';
   const response = await fetch(urlGroups);
@@ -46,11 +29,10 @@ async function fetchData() {
 }
 fetchData();
 
-formSubmit.addEventListener('submit', formSubmitData);
-
 function openForm() {
   formModal.classList.add('modal-open');
   modalClose(formModal, innerFormModal);
 }
 
+formSubmit.addEventListener('submit', formSubmitData);
 addItem.addEventListener('click', openForm);

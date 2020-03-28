@@ -1,5 +1,6 @@
-import { convertDatoToAge } from '../utils/utils.js';
+import { convertDatoToAge, modalClose } from '../utils/utils.js';
 
+// Creates modal for group list item
 export function groupModal(modal, modalData) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
@@ -25,14 +26,4 @@ export function groupModal(modal, modalData) {
     </sections>
   `;
   modalClose(modal, innerModal);
-}
-
-export function modalClose(modal, innerModal) {
-  const closeModalEl = document.createElement('div');
-  closeModalEl.classList.add('modal-close');
-  closeModalEl.textContent = 'X';
-  closeModalEl.addEventListener('click', () => {
-    modal.classList.remove('modal-open');
-  });
-  innerModal.insertAdjacentElement('beforeend', closeModalEl);
 }
