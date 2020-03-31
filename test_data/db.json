@@ -1,11 +1,9 @@
 {
-  "groups": [
-    {
+  "groups": [{
       "group_id": 1,
       "group_name": "Cirulisi",
       "group_icon": "<i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i>",
-      "students": [
-        {
+      "students": [{
           "id": 1,
           "first_name": "Baird",
           "last_name": "Gennerich",
@@ -131,8 +129,7 @@
       "group_id": 2,
       "group_name": "Narbuli",
       "group_icon": "<i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i>",
-      "students": [
-        {
+      "students": [{
           "id": 1,
           "first_name": "Jase",
           "last_name": "Ginsie",
@@ -243,455 +240,38 @@
       ]
     }
   ],
-  "waiting_list": [
-    {
+  "wl": [{
       "first_name": "Emils",
       "last_name": "Bisenieks",
-      "birthday": "09.06.1993",
-      "mother_name": "Ilze",
-      "mother_phone": "1",
-      "father_name": "Sandris",
-      "father_phone": "2",
+      "birth_date": "09.06.1993",
+      "mothers_name": "Ilze",
+      "mothers_phone": "1",
+      "fathers_name": "Sandris",
+      "fathers_phone": "2",
       "notes": "Resnis",
       "id": 1
     },
     {
-      "first_name": "osis",
-      "last_name": "test",
-      "birthday": "test",
-      "mother_name": "tes",
-      "mother_phone": "1",
-      "father_name": "test",
-      "father_phone": "1",
-      "notes": "est",
+      "first_name": "Liva",
+      "last_name": "Misina",
+      "birth_date": "12.08.1996",
+      "mothers_name": "Guna",
+      "mothers_phone": "1",
+      "fathers_name": "Gunars",
+      "fathers_phone": "2",
+      "notes": "TESTINS",
       "id": 2
     },
     {
-      "first_name": "Liva",
-      "last_name": "Misina",
-      "birthday": "12.08.1996",
-      "mother_name": "Guna",
-      "mother_phone": "1",
-      "father_name": "Gunars",
-      "father_phone": "2",
-      "notes": "TESTINS",
-      "id": 3
-    },
-    {
-      "first_name": "Janis",
-      "last_name": "Berzins",
-      "birthday": "05.02.2016",
-      "mother_name": "Liene",
-      "mother_phone": "1",
-      "father_name": "Edgars",
-      "father_phone": "2",
+      "first_name": "Elvis",
+      "last_name": "Bisenieks",
+      "birth_date": "24.10.1994",
+      "mothers_name": "Ilze",
+      "mothers_phone": "1",
+      "fathers_name": "Sandris",
+      "fathers_phone": "2",
       "notes": "TEST",
-      "id": 4
-    },
-    {
-      "first_name": "test",
-      "last_name": "test",
-      "birthday": "tesat",
-      "mother_name": "tsdasd",
-      "mother_phone": "1",
-      "father_name": "fsad",
-      "father_phone": "1",
-      "notes": "",
-      "id": 5
-    },
-    {
-      "first_name": "sdasd",
-      "last_name": "sadssa",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "1",
-      "father_phone": "2",
-      "notes": "",
-      "id": 6
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 7
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 8
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 9
-    },
-    {
-      "first_name": "dsad",
-      "last_name": "dsad",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "2",
-      "notes": "",
-      "id": 10
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "1",
-      "father_phone": "1",
-      "notes": "",
-      "id": 11
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 12
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 13
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 14
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 15
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 16
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 17
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 18
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 19
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 20
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 21
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 22
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 23
-    },
-    {
-      "id": 24
-    },
-    {
-      "id": 25
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 26
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "1",
-      "father_phone": "1",
-      "notes": "",
-      "id": 27
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 28
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 29
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 30
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 31
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 32
-    },
-    {
-      "first_name": "",
-      "last_name": "",
-      "birthday": "",
-      "mother_name": "",
-      "mother_phone": "1",
-      "father_name": "",
-      "father_phone": "1",
-      "notes": "",
-      "id": 33
-    },
-    {
-      "id": 34
-    },
-    {
-      "id": 35
-    },
-    {
-      "id": 36
-    },
-    {
-      "id": 37
-    },
-    {
-      "id": 38
-    },
-    {
-      "id": 39
-    },
-    {
-      "id": 40
-    },
-    {
-      "id": 41
-    },
-    {
-      "id": 42
-    },
-    {
-      "id": 43
-    },
-    {
-      "id": 44
-    },
-    {
-      "id": 45
-    },
-    {
-      "id": 46
-    },
-    {
-      "id": 47
-    },
-    {
-      "id": 48
-    },
-    {
-      "id": 49
-    },
-    {
-      "id": 50
-    },
-    {
-      "id": 51
-    },
-    {
-      "id": 52
-    },
-    {
-      "id": 53
-    },
-    {
-      "id": 54
-    },
-    {
-      "id": 55
-    },
-    {
-      "id": 56
-    },
-    {
-      "id": 57
-    },
-    {
-      "id": 58
-    },
-    {
-      "id": 59
-    },
-    {
-      "id": 60
-    },
-    {
-      "id": 61
-    },
-    {
-      "id": 62
-    },
-    {
-      "id": 63
-    },
-    {
-      "id": 64
-    },
-    {
-      "id": 65
-    },
-    {
-      "id": 66
-    },
-    {
-      "id": 67
+      "id": 3
     }
   ]
 }

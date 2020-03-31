@@ -1,5 +1,5 @@
 import { genderTranform, convertDatoToAge } from '../utils/utils.js';
-// import { groupModal } from '../groupLists/GroupModal.js';
+import { groupModal } from '../groupLists/GroupModal.js';
 
 // Create GroupList Object
 export function WaitingList(wlData, tableWrapper) {
@@ -18,11 +18,12 @@ WaitingList.prototype.newTable = function(wlData) {
   // For each student create table row
   console.log(wlData);
   wlData.forEach((student, i) => {
+    console.log(student);
     const studentRow = document.createElement('div');
     studentRow.classList.add('table-row');
-    // studentRow.addEventListener('click', () =>
-    //   groupModal(document.querySelector('.modal'), student)
-    // );
+    studentRow.addEventListener('click', () =>
+      groupModal(document.querySelector('.modal'), student)
+    );
     const studentRowContent = `
             <div class="table-cell-wrapper">
                 <div class="table-cell">${i + 1}</div>

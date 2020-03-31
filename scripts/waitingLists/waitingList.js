@@ -1,5 +1,6 @@
 import { getKeyValuesPairs, modalClose } from '../utils/utils.js';
 import { WaitingList } from './newWaitingListTable.js';
+import { waitingListForm } from './waitingListForm.js';
 
 const addItem = document.querySelector('.wl-add-item');
 const formModal = document.querySelector('.modal');
@@ -10,37 +11,28 @@ const wlwrapper = document.querySelector('.group-list');
 
 // Submits waiting lists form data to server
 function formSubmitData(e) {
-  // formModal.classList.remove('modal-open');
-}
-
-// body: JSON.stringify(getKeyValuesPairs(formSubmit)),
-// headers: {
-//   // 'Content-Type': 'application/json',
-// },
-
-// // Getting waiting lists data from server
-// async function fetchData() {
-//   const urlGroups = 'http://localhost:3000/waiting_list';
-//   const response = await fetch(urlGroups);
-
-//   const data = await response.json();
-//   console.log(data);
-//   new WaitingList(data, wlwrapper);
-// }
-// // fetchData();
-
-function openForm() {
-  formModal.classList.add('modal-open');
-  modalClose(formModal, innerFormModal);
-}
-
-// formSubmit.addEventListener('click', );
-addItem.addEventListener('click', e => {
   e.preventDefault();
-  console.log();
-  const url = 'http://localhost:3000/waiting_list';
-  const options = { method: 'POST' };
-  fetch(url, options);
-  console.log('Still not reloading');
+  const url = 'http://localhost:3000/wl';
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(getKeyValuesPairs(formSubmit)),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   formModal.classList.remove('modal-open');
-});
+}
+
+// Getting waiting lists data from server
+async function fetchData() {
+  const urlGroups = 'http://localhost:3000/wl';
+  const response = await fetch(urlGroups);
+
+  const data = await response.json();
+  console.log(data);
+  const newList = new WaitingList(data, wlwrapper);
+  return newList;
+}
+fetchData();
+
+addItem.addEventListener('click', () => waitingListForm(formModal));

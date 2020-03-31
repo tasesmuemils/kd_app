@@ -1,6 +1,6 @@
 import { convertDatoToAge, modalClose } from '../utils/utils.js';
 
-// Creates modal for group list item
+// Creates and opens modal for group list item
 export function groupModal(modal, modalData) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
