@@ -8,17 +8,17 @@ export function waitingListForm(modal) {
   <form class='as-form'>
     <h4>ADD STUDENT TO WAITING LIST</h4>
     <div class="as-form-student">
-        <input type='text' name='first_name' placeholder='Name'>
-        <input type='text' name='last_name' placeholder='Last Name'>
-        <input type='text' name='birth_date' placeholder='Birthday'>
-        <input type='text' name='start_kg_date' placeholder='Date, when want to start'>
+        <input type='text' name='first_name' placeholder='Name' data-validation='string'>
+        <input type='text' name='last_name' placeholder='Last Name' data-validation='string'>
+        <input type='text' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <input type='text' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
     </div>
     
     <div class='as-form-parents'>
-        <input type='text' name='mothers_name' placeholder='Mothers Name'>
-        <input type='tel' name='mothers_phone' placeholder='Mothers Phone Number' pattern='[0-9]'>
-        <input type='text' name='fathers_name' placeholder='Fathers Name'>
-        <input type='tel' name='fathers_phone' placeholder='Fathers Phone Number' pattern='[0-9]'>
+        <input type='text' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
+        <input type='tel' name='mothers_phone' placeholder='Mothers Phone Number' pattern='[0-9]' data-validation='phone'>
+        <input type='text' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
+        <input type='tel' name='fathers_phone' placeholder='Fathers Phone Number' pattern='[0-9]' data-validation='phone'>
     </div>
     
     <div class='as-form-notes'>
@@ -33,14 +33,23 @@ export function waitingListForm(modal) {
 
   function formSubmitData(e) {
     e.preventDefault();
-    const url = 'http://localhost:3000/wl';
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(getKeyValuesPairs(formSubmit)),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    function formValidation() {
+      const formInputs = formSubmit.querySelectorAll('input');
+      formInputs.forEach(input => {
+        if (input.dataset.validation === 'string') {
+          console.log(input);
+        }
+      });
+    }
+    formValidation();
+    // const url = 'http://localhost:3000/wl';
+    // fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify(getKeyValuesPairs(formSubmit)),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
     modal.classList.remove('modal-open');
   }
 
