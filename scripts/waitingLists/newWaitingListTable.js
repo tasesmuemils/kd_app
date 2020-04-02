@@ -16,9 +16,7 @@ WaitingList.prototype.newTable = function(wlData) {
   //   groupTable.setAttribute('data-group_name', `${groupData.group_name}`);
 
   // For each student create table row
-  console.log(wlData);
   wlData.forEach((student, i) => {
-    console.log(student);
     const studentRow = document.createElement('div');
     studentRow.classList.add('table-row');
     studentRow.addEventListener('click', () =>

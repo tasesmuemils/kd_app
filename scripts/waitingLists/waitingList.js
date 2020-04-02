@@ -6,7 +6,6 @@ const addItem = document.querySelector('.wl-add-item');
 const formModal = document.querySelector('.modal');
 const innerFormModal = formModal.firstElementChild;
 const formSubmit = document.querySelector('.as-form');
-console.log(formSubmit);
 const wlwrapper = document.querySelector('.group-list');
 
 // Submits waiting lists form data to server
@@ -29,7 +28,6 @@ async function fetchData() {
   const response = await fetch(urlGroups);
 
   const data = await response.json();
-  console.log(data);
   const newList = new WaitingList(data, wlwrapper);
   return newList;
 }
