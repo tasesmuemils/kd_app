@@ -10,16 +10,19 @@ export function waitingListForm(modal) {
     <div class="as-form-student tab">
       <div class='input-control'>
         <input type='text' name='first_name' placeholder='Name' data-validation='string'>
-        <p>Err</p>
+        <p class='error-msg'></p>
       </div>
       <div class='input-control'>
         <input type='text' name='last_name' placeholder='Last Name' data-validation='string'>
+        <p class='error-msg'></p>
       </div>
       <div class='input-control'>
         <input type='text' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <p class='error-msg'></p>
       </div>
       <div class='input-control'>
         <input type='text' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
+        <p class='error-msg'></p>
       </div>
       
     </div>
@@ -59,6 +62,7 @@ export function waitingListForm(modal) {
 
   // Shows next form tab or switches to previous tab
   function nextFormTab(n) {
+    if (!formValidation()) return false;
     formTab[currentTabIndex].style.display = 'none';
     currentTabIndex += n;
     formTab[currentTabIndex].style.display = 'grid';
@@ -81,45 +85,53 @@ export function waitingListForm(modal) {
     nextFormTab(-1);
   });
 
-  // function formSubmitData(e) {
-  //   e.preventDefault();
+  // Form validation
+  function formValidation() {
+    // Error messages element handling
+    function insertErrorMessage(errElement, errText) {
+      errElement.classList.add('input-err-msg');
+      errElement.textContent = errText;
+    }
 
-  //   function insertErrorMessage(input, errText) {
-  //     const errorMessagesEl = document.createElement('p');
-  //     errorMessagesEl.classList.add('input-err-msg');
-  //     errorMessagesEl.textContent = errText;
-  //     input.insertAdjacentElement('beforeend', errorMessagesEl);
-  //   }
+    // Object with error messages
+    const errorMessages = {
+      empty: 'Field cant be empty',
+    };
 
-  //   function formValidation() {
-  //     const errorMessages = {
-  //       empty: 'Field cant be empty',
-  //     };
+    // If input value is empty
+    const formInputs = formSubmit.querySelectorAll('.as-form-student input');
+    console.log(formInputs);
+    let valid = true;
+    formInputs.forEach(input => {
+      console.log();
+      // Error messages element
+      const errorMsgEl = input.parentElement.lastElementChild;
+      if (input.value === '') {
+        // If input value is empty
+        insertErrorMessage(errorMsgEl, errorMessages.empty);
+        valid = false;
+      } else if (valid) {
+        // errorMsgEl.style.opacity = 0;
+        insertErrorMessage(errorMsgEl, '');
+      }
+    });
+    return valid;
+  }
 
-  //     const formInputs = formSubmit.querySelectorAll('input');
-  //     formInputs.forEach(input => {
-  //       if (
-  //         (input.name === 'first_name' ||
-  //           input.name === 'last_name' ||
-  //           input.name === 'birth_date' ||
-  //           input.name === 'start_kg_date') &&
-  //         input.value === ''
-  //       ) {
-  //         insertErrorMessage(input.parentElement, errorMessages.empty);
-  //       }
-  //     });
-  //   }
-  //   formValidation();
-  //   // const url = 'http://localhost:3000/wl';
-  //   // fetch(url, {
-  //   //   method: 'POST',
-  //   //   body: JSON.stringify(getKeyValuesPairs(formSubmit)),
-  //   //   headers: {
-  //   //     'Content-Type': 'application/json',
-  //   //   },
-  //   // });
-  //   // modal.classList.remove('modal-open');
-  // }
+  function formSubmitData(e) {
+    e.preventDefault();
 
-  // formSubmit.addEventListener('submit', formSubmitData);
+    // formValidation();
+    // const url = 'http://localhost:3000/wl';
+    // fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify(getKeyValuesPairs(formSubmit)),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
+    // modal.classList.remove('modal-open');
+  }
+
+  formSubmit.addEventListener('submit', formSubmitData);
 }
