@@ -9,30 +9,37 @@ export function waitingListForm(modal) {
     <h4>ADD STUDENT TO WAITING LIST</h4>
     <div class="as-form-student tab">
       <div class='input-control'>
-        <input type='text' name='first_name' placeholder='Name' data-validation='string'>
+        <select class='as-form-input' name='gender'>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input type='text' name='last_name' placeholder='Last Name' data-validation='string'>
+        <input type='text' class='as-form-input' name='first_name' placeholder='Name' data-validation='string'>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input type='text' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <input type='text' class='as-form-input' name='last_name' placeholder='Last Name' data-validation='string'>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input type='text' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
+        <input type='date' class='as-form-input' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <p class='error-msg'></p>
+      </div>
+      <div class='input-control'>
+        <input type='date' class='as-form-input' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
         <p class='error-msg'></p>
       </div>
       
     </div>
     
     <div class='as-form-parents tab'>
-      <input type='text' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
-      <input type='tel' name='mothers_phone' placeholder='Mothers Phone Number' pattern='[0-9]' data-validation='phone'>
-      <input type='text' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
-      <input type='tel' name='fathers_phone' placeholder='Fathers Phone Number' pattern='[0-9]' data-validation='phone'>
-      <input type="text" name='notes' placeholder="Notes">
+      <input type='text' class='as-form-input' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
+      <input type='tel' class='as-form-input' name='mothers_phone' placeholder='Mothers Phone Number' pattern='[0-9]' data-validation='phone'>
+      <input type='text' class='as-form-input' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
+      <input type='tel' class='as-form-input' name='fathers_phone' placeholder='Fathers Phone Number' pattern='[0-9]' data-validation='phone'>
+      <input type="text" class='as-form-input' name='notes' placeholder="Notes">
     </div>
     
       
@@ -50,6 +57,7 @@ export function waitingListForm(modal) {
   // Selecting form and form tabs, also index for first tab
   const formSubmit = document.querySelector('.as-form');
   const formTab = document.querySelectorAll('.tab');
+
   let currentTabIndex = 0;
 
   // Shows first tab of the form
@@ -120,17 +128,18 @@ export function waitingListForm(modal) {
 
   function formSubmitData(e) {
     e.preventDefault();
+    // getKeyValuesPairs(formSubmit);
 
-    // formValidation();
-    // const url = 'http://localhost:3000/wl';
-    // fetch(url, {
-    //   method: 'POST',
-    //   body: JSON.stringify(getKeyValuesPairs(formSubmit)),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // });
-    // modal.classList.remove('modal-open');
+    formValidation();
+    const url = 'http://localhost:3000/wl';
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(getKeyValuesPairs(formSubmit)),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    modal.classList.remove('modal-open');
   }
 
   formSubmit.addEventListener('submit', formSubmitData);

@@ -26,14 +26,13 @@ export function convertDatoToAge(birthdate) {
 
 // Gets input values form form and tranforms them in to key/values for object
 export function getKeyValuesPairs(form) {
-  const inputsArray = [...form.querySelectorAll('input')];
+  const inputsArray = [...form.querySelectorAll('.as-form-input')];
+  console.log(inputsArray);
   const emptyObject = {};
-  inputsArray
-    .filter(input => input.type === 'text' || input.type === 'tel')
-    .map(input => {
-      const key = input.name;
-      return (emptyObject[key] = `${input.value}`);
-    });
+  inputsArray.map(input => {
+    const key = input.name;
+    return (emptyObject[key] = `${input.value}`);
+  });
   console.log(emptyObject);
   return emptyObject;
 }
