@@ -32,6 +32,7 @@
     "sass": "^1.26.3"
   },
   "dependencies": {
+    "flatpickr": "^4.6.3",
     "json-server": "^0.16.1",
     "npm-check-updates": "^4.0.4"
   }

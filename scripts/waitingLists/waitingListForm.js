@@ -1,3 +1,4 @@
+import flatpickr from 'flatpickr';
 import { modalClose, getKeyValuesPairs } from '../utils/utils.js';
 
 // Creates and opens modal for group list item
@@ -28,7 +29,7 @@ export function waitingListForm(modal) {
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input type='date' class='as-form-input' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
+        <input id="flatpicker" class='as-form-input' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
         <p class='error-msg'></p>
       </div>
       
@@ -58,6 +59,10 @@ export function waitingListForm(modal) {
   const formSubmit = document.querySelector('.as-form');
   const formTab = document.querySelectorAll('.tab');
 
+  // Date format with flatpickr
+
+  flatpickr('#flatpickr');
+  // Current tab index
   let currentTabIndex = 0;
 
   // Shows first tab of the form
@@ -128,7 +133,6 @@ export function waitingListForm(modal) {
 
   function formSubmitData(e) {
     e.preventDefault();
-    // getKeyValuesPairs(formSubmit);
 
     formValidation();
     const url = 'http://localhost:3000/wl';
