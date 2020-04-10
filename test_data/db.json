@@ -302,6 +302,71 @@
       "fathers_phone": "2",
       "notes": "Skirusies",
       "id": 5
+    },
+    {
+      "gender": "Male",
+      "first_name": "Atis",
+      "last_name": "Kozlovskis",
+      "birth_date": "2020-04-14",
+      "start_kg_date": "2020-04-21",
+      "mothers_name": "TEST",
+      "mothers_phone": "1",
+      "fathers_name": "TEST",
+      "fathers_phone": "1",
+      "notes": "TEST",
+      "id": 6
+    },
+    {
+      "gender": "Male",
+      "first_name": "Haris",
+      "last_name": "Purins",
+      "birth_date": "2020-04-21",
+      "start_kg_date": "2020-04-14",
+      "mothers_name": "dsadsa",
+      "mothers_phone": "2",
+      "fathers_name": "dsadsa",
+      "fathers_phone": "3",
+      "notes": "dsadsad",
+      "id": 7
+    },
+    {
+      "gender": "Female",
+      "first_name": "Viktorija",
+      "last_name": "Burtniece",
+      "birth_date": "2020-04-21",
+      "start_kg_date": "2020-04-13",
+      "mothers_name": "dsads",
+      "mothers_phone": "1",
+      "fathers_name": "dsads",
+      "fathers_phone": "2",
+      "notes": "dsdsadsa",
+      "id": 8
+    },
+    {
+      "gender": "Male",
+      "first_name": "Krians",
+      "last_name": "Vasldimunds",
+      "birth_date": "21.04.2020",
+      "start_kg_date": "03.04.2020",
+      "mothers_name": "",
+      "mothers_phone": "",
+      "fathers_name": "",
+      "fathers_phone": "",
+      "notes": "",
+      "id": 9
+    },
+    {
+      "gender": "Male",
+      "first_name": "Viktors",
+      "last_name": "scerbatiks",
+      "birth_date": "05.05.2005",
+      "start_kg_date": "28.04.2020",
+      "mothers_name": "",
+      "mothers_phone": "",
+      "fathers_name": "",
+      "fathers_phone": "",
+      "notes": "",
+      "id": 10
     }
   ]
 }

@@ -1,5 +1,10 @@
 import flatpickr from 'flatpickr';
 import { modalClose, getKeyValuesPairs } from '../utils/utils.js';
+// eslint-disable-next-line import/no-cycle
+import { fetchData } from './waitingList.js';
+
+// Style for date picker
+require('flatpickr/dist/themes/dark.css');
 
 // Creates and opens modal for group list item
 export function waitingListForm(modal) {
@@ -8,9 +13,10 @@ export function waitingListForm(modal) {
   innerModal.innerHTML = `
   <form class='as-form'>
     <h4>ADD STUDENT TO WAITING LIST</h4>
-    <div class="as-form-student tab">
+    <div class="as-form-student as-form-select tab">
       <div class='input-control'>
         <select class='as-form-input' name='gender'>
+          <option selected disabled hidden>Gender</option>
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -18,18 +24,22 @@ export function waitingListForm(modal) {
       </div>
       <div class='input-control'>
         <input type='text' class='as-form-input' name='first_name' placeholder='Name' data-validation='string'>
+        <span class="separator"> </span>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
         <input type='text' class='as-form-input' name='last_name' placeholder='Last Name' data-validation='string'>
+        <span class="separator"> </span>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input type='date' class='as-form-input' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <input type='date' class='as-form-input flatpickr' name='birth_date' placeholder='Birthday' data-validation='date'>
+        <span class="separator"> </span>
         <p class='error-msg'></p>
       </div>
       <div class='input-control'>
-        <input id="flatpicker" class='as-form-input' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
+        <input type="text" class='as-form-input flatpickr' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
+        <span class="separator"> </span>
         <p class='error-msg'></p>
       </div>
       
@@ -37,10 +47,15 @@ export function waitingListForm(modal) {
     
     <div class='as-form-parents tab'>
       <input type='text' class='as-form-input' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
+      <span class="separator"> </span>
       <input type='tel' class='as-form-input' name='mothers_phone' placeholder='Mothers Phone Number' pattern='[0-9]' data-validation='phone'>
+      <span class="separator"> </span>
       <input type='text' class='as-form-input' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
+      <span class="separator"> </span>
       <input type='tel' class='as-form-input' name='fathers_phone' placeholder='Fathers Phone Number' pattern='[0-9]' data-validation='phone'>
+      <span class="separator"> </span>
       <input type="text" class='as-form-input' name='notes' placeholder="Notes">
+      <span class="separator"> </span>
     </div>
     
       
@@ -60,8 +75,9 @@ export function waitingListForm(modal) {
   const formTab = document.querySelectorAll('.tab');
 
   // Date format with flatpickr
-
-  flatpickr('#flatpickr');
+  flatpickr('.flatpickr', {
+    dateFormat: 'd.m.Y',
+  });
   // Current tab index
   let currentTabIndex = 0;
 
@@ -72,31 +88,6 @@ export function waitingListForm(modal) {
     document.querySelector('input[type="submit"]').style.display = 'none';
   }
   showFormTab(currentTabIndex);
-
-  // Shows next form tab or switches to previous tab
-  function nextFormTab(n) {
-    if (!formValidation()) return false;
-    formTab[currentTabIndex].style.display = 'none';
-    currentTabIndex += n;
-    formTab[currentTabIndex].style.display = 'grid';
-    if (currentTabIndex !== 0) {
-      document.querySelector('#nextBtn').style.display = 'none';
-      document.querySelector('#prevBtn').style.display = 'inline';
-      document.querySelector('input[type="submit"]').style.display = 'inline';
-    } else {
-      document.querySelector('#nextBtn').style.display = 'inline';
-      document.querySelector('#prevBtn').style.display = 'none';
-      document.querySelector('input[type="submit"]').style.display = 'none';
-    }
-  }
-
-  // Form "next" and "previous" button
-  document.querySelector('#nextBtn').addEventListener('click', () => {
-    nextFormTab(1);
-  });
-  document.querySelector('#prevBtn').addEventListener('click', () => {
-    nextFormTab(-1);
-  });
 
   // Form validation
   function formValidation() {
@@ -131,6 +122,31 @@ export function waitingListForm(modal) {
     return valid;
   }
 
+  // Shows next form tab or switches to previous tab
+  function nextFormTab(n) {
+    if (!formValidation()) return false;
+    formTab[currentTabIndex].style.display = 'none';
+    currentTabIndex += n;
+    formTab[currentTabIndex].style.display = 'grid';
+    if (currentTabIndex !== 0) {
+      document.querySelector('#nextBtn').style.display = 'none';
+      document.querySelector('#prevBtn').style.display = 'inline';
+      document.querySelector('input[type="submit"]').style.display = 'inline';
+    } else {
+      document.querySelector('#nextBtn').style.display = 'inline';
+      document.querySelector('#prevBtn').style.display = 'none';
+      document.querySelector('input[type="submit"]').style.display = 'none';
+    }
+  }
+
+  // Form "next" and "previous" button
+  document.querySelector('#nextBtn').addEventListener('click', () => {
+    nextFormTab(1);
+  });
+  document.querySelector('#prevBtn').addEventListener('click', () => {
+    nextFormTab(-1);
+  });
+
   function formSubmitData(e) {
     e.preventDefault();
 
@@ -144,6 +160,8 @@ export function waitingListForm(modal) {
       },
     });
     modal.classList.remove('modal-open');
+    document.querySelector('.group-list').innerHTML = '';
+    fetchData();
   }
 
   formSubmit.addEventListener('submit', formSubmitData);
