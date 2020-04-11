@@ -2,20 +2,7 @@ import { GroupList } from './newGroupTable.js';
 
 const slider = document.querySelector('.slider');
 const groupListEl = document.querySelector('.group-list');
-
-// Gets data from groups
-async function fetchData() {
-  const urlGroups = 'http://localhost:3000/groups';
-  const response = await fetch(urlGroups);
-  console.log(response);
-  const data = await response.json();
-
-  data.forEach(item => {
-    sliderData(item);
-  });
-}
-
-fetchData();
+const urlGroups = 'http://localhost:3000/groups';
 
 // When card is clicked, clicked = false
 function sliderClickHandling(sliderWrapper) {
@@ -48,3 +35,16 @@ function sliderData(groupData) {
   slider.insertAdjacentElement('beforeend', sliderInnerCard);
   new GroupList(groupData, groupListEl);
 }
+
+// Gets data from groups
+export async function fetchGroupData(url) {
+  const response = await fetch(url);
+  console.log(response);
+  const data = await response.json();
+
+  data.forEach(item => {
+    sliderData(item);
+  });
+}
+
+fetchGroupData(urlGroups);

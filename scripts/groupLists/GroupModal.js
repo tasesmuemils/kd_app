@@ -1,4 +1,5 @@
 import { convertDatoToAge, modalClose } from '../utils/utils.js';
+// import { fetchGroupData } from './groupList.js';
 
 // Creates and opens modal for group list item
 export function groupModal(modal, modalData) {
@@ -24,6 +25,21 @@ export function groupModal(modal, modalData) {
     <section class="modal-child-notes">
       <p><i class="fas fa-sticky-note"></i>${modalData.notes}</p>
     </sections>
+    <section>
+      <button class='deleteItem btn'>Delete</button>    
+    </section>
   `;
+
+  const deleteBtn = document.querySelector('.deleteItem');
+
+  const url = 'http://localhost:3000/groups/';
+  deleteBtn.addEventListener('click', () => {
+    fetch(`${url}${modalData.id}`, {
+      method: 'DELETE',
+    });
+    modal.classList.remove('modal-open');
+    document.querySelector('.group-list').innerHTML = '';
+    // fetchGroupData(url);
+  });
   modalClose(modal, innerModal);
 }

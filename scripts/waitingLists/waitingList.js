@@ -1,24 +1,18 @@
-import { getKeyValuesPairs, modalClose } from '../utils/utils.js';
 import { WaitingList } from './newWaitingListTable.js';
 import { waitingListForm } from './waitingListForm.js';
 
 const addItem = document.querySelector('.wl-add-item');
 const formModal = document.querySelector('.modal');
-const innerFormModal = formModal.firstElementChild;
-const formSubmit = document.querySelector('.as-form');
 const wlwrapper = document.querySelector('.group-list');
-
-// Submits waiting lists form data to server
+const urlWl = 'http://localhost:3000/wl';
 
 // Getting waiting lists data from server
-export async function fetchData() {
-  const urlGroups = 'http://localhost:3000/wl';
-  const response = await fetch(urlGroups);
-
+export async function fetchData(url) {
+  const response = await fetch(url);
   const data = await response.json();
   const newList = new WaitingList(data, wlwrapper);
   return newList;
 }
-fetchData();
+fetchData(urlWl);
 
 addItem.addEventListener('click', () => waitingListForm(formModal));
