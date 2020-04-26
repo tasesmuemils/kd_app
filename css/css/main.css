@@ -348,6 +348,19 @@ body {
   cursor: pointer;
 }
 
+.disabled-input {
+  background-color: transparent;
+  margin: 0px 0;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+.disabled-input:focus + .separator {
+  transform: scaleX(1) translateY(-2px);
+  opacity: 1;
+}
+
 /*UTILS END*/
 
 /*# sourceMappingURL=main.css.map */
