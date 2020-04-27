@@ -42,7 +42,7 @@ function sliderData(groupData, students) {
   });
   sliderInnerCard.innerHTML = `
     <figure>${groupData.group_icon}</figure>
-    <h5>${groupData.group_name}</h5>
+    <h5 data-groupId='${groupData.id}'>${groupData.group_name}</h5>
     <p><span>${students.length}</span> /20</p>
   `;
   slider.insertAdjacentElement('beforeend', sliderInnerCard);
@@ -104,31 +104,32 @@ GroupList.prototype.newTable = function(groupData, studentsData) {
   this.tableWrapper.insertAdjacentElement('afterbegin', groupTable);
 };
 
+// Updates data after deleting student, adding student, edditing student data
 function updateGroupsData(groupData, url) {
-  document
-    .querySelector(`.table-style[data-group_name="${groupData.group_name}"]`)
-    .remove();
-
+  const tableEl = document.querySelector(
+    `.table-style[data-group_name="${groupData.group_name}"]`
+  );
+  tableEl.remove();
   fetch(url)
     .then(resp => resp.json())
     .then(studentsData => {
       new GroupList(groupData, studentsData, groupListEl);
-      const groupName = document.querySelector('.table-style').dataset
-        .group_name;
+      const groupName = document.querySelector(
+        `.table-style[data-group_name="${groupData.group_name}"]`
+      ).dataset.group_name;
       document.querySelector(
         `.table-style[data-group_name='${groupName}']`
       ).style.display = 'grid';
-      if (
-        document.querySelector('.sliderCard').dataset.group_name === groupName
-      ) {
-        document.querySelector('.sliderCard span').textContent =
-          studentsData.length;
-      }
+
+      document.querySelector(
+        `.sliderCard[data-group_name="${groupName}"] span`
+      ).textContent = studentsData.length;
     });
 }
 
 // Creates and opens modal for group list item
 function groupModal(modal, modalData, groupData) {
+  console.log(groupData);
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
   innerModal.innerHTML = `
@@ -333,22 +334,24 @@ function groupForm(modal) {
 
   // Getting group names from sliderCard to add group ID to new student
   const groupNamesEl = [...document.querySelectorAll('.sliderCard h5')];
+  console.log(groupNamesEl);
   groupNamesEl
-    .map(el => `<option>${el.textContent}</option>`)
+    .map(
+      el => `<option value="${el.dataset.groupid}">${el.textContent}</option>`
+    )
     .forEach(el => {
       document
         .querySelector(`.as-form-input[name="groupId"]`)
         .insertAdjacentHTML('beforeend', el);
     });
 
-  const selectElGroupNames = document.createElement('option');
-  console.log(selectElGroupNames);
   // Adds close button to modal
   modalClose(modal, innerModal);
 
   // Selecting form and form tabs, also index for first tab
   const formSubmit = document.querySelector('.as-form');
   const formInputsArray = [...formSubmit.querySelectorAll('.as-form-input')];
+  console.log(getKeyValuesPairs(formInputsArray));
   const formTab = document.querySelectorAll('.tab');
 
   // Date format with flatpickr
@@ -429,20 +432,29 @@ function groupForm(modal) {
     e.preventDefault();
 
     formValidation();
-    const url = 'http://localhost:3000/students';
     const convertedObject = getKeyValuesPairs(formInputsArray);
     // Random ID
     convertedObject.id = Math.floor(Math.random() * 300);
 
-    fetch(url, {
+    fetch('http://localhost:3000/students', {
       method: 'POST',
       body: JSON.stringify(convertedObject),
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-    modal.classList.remove('modal-open');
-    updateGroupsData();
+    })
+      .then(resp => resp.json())
+      .then(() => {
+        fetch(`http://localhost:3000/groups/${convertedObject.groupId}`)
+          .then(resp => resp.json())
+          .then(groupData => {
+            modal.classList.remove('modal-open');
+            updateGroupsData(
+              groupData,
+              `http://localhost:3000/students?groupId=${groupData.id}`
+            );
+          });
+      });
   }
 
   formSubmit.addEventListener('submit', formSubmitData);

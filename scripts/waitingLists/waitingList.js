@@ -148,7 +148,15 @@ function wlModal(modal, modalData) {
                   .then(() => {
                     modal.classList.remove('modal-open');
                     mtgModal.classList.remove('modal-open');
-                    updateGroupsData();
+                    document.querySelector('.table-style').remove();
+                  });
+                fetch('http://localhost:3000/wl')
+                  .then(resp => resp.json())
+                  .then(wlData => {
+                    new WaitingList(
+                      wlData,
+                      document.querySelector('.group-list')
+                    );
                   });
               });
           });
@@ -157,16 +165,6 @@ function wlModal(modal, modalData) {
       });
     modalClose(mtgModal, mtgInnerModal);
   });
-
-  function updateGroupsData() {
-    document.querySelector('.table-style').remove();
-
-    fetch(`http://localhost:3000/wl`)
-      .then(resp => resp.json())
-      .then(wlData => {
-        new WaitingList(wlData, document.querySelector('.group-list'));
-      });
-  }
 }
 
 // Creates and opens form modal to add student to waitng list
@@ -348,7 +346,11 @@ function waitingListForm(modal) {
     });
     modal.classList.remove('modal-open');
     document.querySelector('.group-list').innerHTML = '';
-    fetchData(urlWl);
+    fetch('http://localhost:3000/wl')
+      .then(resp => resp.json())
+      .then(wlData => {
+        new WaitingList(wlData, document.querySelector('.group-list'));
+      });
   }
 
   formSubmit.addEventListener('submit', formSubmitData);
