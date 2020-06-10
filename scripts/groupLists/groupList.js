@@ -1,21 +1,20 @@
 import flatpickr from 'flatpickr';
 import {
   genderTranform,
-  convertDatoToAge,
   modalClose,
   getKeyValuesPairs,
 } from '../utils/utils.js';
+import { groupStudentTmpl, addToGroupForm } from '../utils/templates.js';
 
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
 
+// Required variables from html file
 const slider = document.querySelector('.slider');
 const groupListEl = document.querySelector('.group-list');
 const urlGroups = 'http://localhost:3000/groups';
 const addStudentBtn = document.querySelector('.add-student-btn');
 const formModal = document.querySelector('.modal');
-
-addStudentBtn.addEventListener('click', () => groupForm(formModal));
 
 // When card is clicked, clicked = false
 function sliderClickHandling(sliderWrapper) {
@@ -71,6 +70,7 @@ export function GroupList(groupData, studentsData, tableWrapper) {
   this.newTable(this.groupData, this.studentsData);
 }
 
+// Function for creating table, table rows
 GroupList.prototype.newTable = function(groupData, studentsData) {
   // Creates Table
   const groupTable = document.createElement('div');
@@ -92,9 +92,9 @@ GroupList.prototype.newTable = function(groupData, studentsData) {
       student.first_name
     } ${student.last_name}</div>
             </div>
-            <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${convertDatoToAge(
+            <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${
               student.birth_date
-            )}</div>
+            }</div>
         `;
 
     // Append row content to row and row to table
@@ -132,57 +132,7 @@ function groupModal(modal, modalData, groupData) {
   console.log(groupData);
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
-  innerModal.innerHTML = `
-    <form class="group-modal">
-      <section class="modal-child-info">
-        <input type="text" name='first_name' class="disabled-input" value="${
-          modalData.first_name
-        }" disabled>
-        <input type="text" name="last_name" class="disabled-input" value="${
-          modalData.last_name
-        }" disabled>
-        <label><i class="fas fa-birthday-cake"></i></label>
-        <input type="text" name='birth_date' class="disabled-input" value="${
-          modalData.birth_date
-        }" disabled>
-        <p><i class="far fa-calendar-alt"></i> ${convertDatoToAge(
-          modalData.birth_date
-        )}</p>
-        
-      </section>
-      <section class="modal-parents-info">
-        <div class="modal-mother-info">
-          <p>Mothers name: <input type="text" name='mothers_name' class="disabled-input" value="${
-            modalData.mothers_name
-          }" disabled></p>
-          <label><i class="fas fa-phone"></i></label>
-          <input type="text" name='mothers_phone' class="disabled-input" value="${
-            modalData.mothers_phone
-          }" disabled>
-        </div>
-        <div class="modal-father-info">
-          <p>Fathers name: <input type="text" name='fathers_name' class="disabled-input" value="${
-            modalData.fathers_name
-          }" disabled></p>
-          <label><i class="fas fa-phone"></i></label>
-          <input type="text" name='fathers_phone' class="disabled-input" value="${
-            modalData.fathers_phone
-          }" disabled>
-        </div>
-      </sections>
-      <section class="modal-child-notes">
-        <label><i class="fas fa-sticky-note"></i></label>
-        <input type="text" name='notes' class="disabled-input" value="${
-          modalData.notes
-        }" disabled>
-      </sections>
-      <section>
-        <button class='deleteItem btn'>Delete</button>
-        <button class='editItem btn'>Edit</button>    
-        <button class='saveItem btn hide'>Save</button>
-      </section>
-    </form>
-  `;
+  innerModal.innerHTML = groupStudentTmpl(modalData);
 
   modalClose(modal, innerModal);
 
@@ -257,80 +207,7 @@ function groupModal(modal, modalData, groupData) {
 function groupForm(modal) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
-  innerModal.innerHTML = `
-  <form class='as-form'>
-    <h4>ADD STUDENT TO GROUP</h4>
-    <div class="as-form-student as-form-select tab">
-      <div class='input-control'>
-        <select class='as-form-input' name='gender'>
-          <option selected disabled hidden>Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <select class='as-form-input' name='groupId'>
-          <option selected disabled hidden>Group</option>
-        </select>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='first_name' placeholder='Name' data-validation='string'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='last_name' placeholder='Last Name' data-validation='string'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='date' class='as-form-input flatpickr' name='birth_date' placeholder='Birthday' data-validation='date'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-    </div>
-    
-    <div class='as-form-parents tab'>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='mothers_last_name' placeholder='Mothers Last Name' data-validation='string'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='tel' class='as-form-input' name='mothers_phone' placeholder='Mothers Phone Number' data-validation='phone'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='fathers_last_name' placeholder='Fathers Last Name' data-validation='string''>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='tel' class='as-form-input' name='fathers_phone' placeholder='Fathers Phone Number' data-validation='phone'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type="text" class='as-form-input' name='notes' placeholder="Notes">
-        <span class="separator"> </span>
-      </div>
-    </div>
-      
-    <div class='as-form-buttons'>
-      <button type="button" class='btn' id="prevBtn">STUDENT INFO</button>
-      <button type="button" class='btn' id="nextBtn">PARENTS INFO</button>
-      <input type='submit' value='SUBMIT' name='form-submit'>
-    </div>
-    
-  </form>
-  `;
+  innerModal.innerHTML = addToGroupForm();
 
   // Getting group names from sliderCard to add group ID to new student
   const groupNamesEl = [...document.querySelectorAll('.sliderCard h5')];
@@ -459,3 +336,6 @@ function groupForm(modal) {
 
   formSubmit.addEventListener('submit', formSubmitData);
 }
+
+// adds event to button, which opens group form
+addStudentBtn.addEventListener('click', () => groupForm(formModal));

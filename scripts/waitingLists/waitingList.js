@@ -1,10 +1,13 @@
+// Imports date picker
 import flatpickr from 'flatpickr';
+// Utils
 import {
   genderTranform,
-  convertDatoToAge,
   modalClose,
   getKeyValuesPairs,
 } from '../utils/utils.js';
+// Templates
+import { wlStudentTmpl, addToWlForm } from '../utils/templates.js';
 
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
@@ -24,8 +27,6 @@ async function fetchData(url) {
 }
 fetchData(urlWl);
 
-addStudentBtn.addEventListener('click', () => waitingListForm(formModal));
-
 // Create GroupList Object
 function WaitingList(wlData, tableWrapper) {
   this.wlData = wlData;
@@ -37,8 +38,6 @@ WaitingList.prototype.newTable = function(wlData) {
   // Creates Table
   const wlTable = document.createElement('div');
   wlTable.classList.add('table-style');
-  //   wlTable.style.display = 'none';
-  //   groupTable.setAttribute('data-group_name', `${groupData.group_name}`);
 
   // For each student create table row
   wlData.forEach((student, i) => {
@@ -70,43 +69,57 @@ WaitingList.prototype.newTable = function(wlData) {
 function wlModal(modal, modalData) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
-  innerModal.innerHTML = `
-    <section class="modal-child-info">
-      <p>${modalData.first_name} ${modalData.last_name}</p>
-      <p><i class="fas fa-birthday-cake"></i>${modalData.birth_date}</p>
-      <p><i class="far fa-calendar-alt"></i>${convertDatoToAge(
-        modalData.birth_date
-      )}</p>
-    </section>
-    <section class="modal-parents-info">
-      <div class="modal-mother-info">
-        <p>Mothers name: ${modalData.mothers_name}</p>
-        <p><i class="fas fa-phone"></i>${modalData.mothers_phone}</p></div>
-      <div class="modal-father-info">
-        <p>Fathers name: ${modalData.fathers_name}</p>
-        <p><i class="fas fa-phone"></i>${modalData.fathers_phone}</p>
-      </div>
-    </sections>
-    <section class="modal-child-notes">
-      <p><i class="fas fa-sticky-note"></i>${modalData.notes}</p>
-    </sections>
-    <section>
-      <button class='deleteItem btn'>Delete</button>
-      <button class='moveBtn btn'>Move to Group</button>
-    </section>
-    <div class="mtg-modal">
-        <div class="mtg-inner-modal">
-          <h1>TEST</h1>
-        </div>
-    </div>
-  `;
+  innerModal.innerHTML = wlStudentTmpl(modalData);
   modalClose(modal, innerModal);
 
+  const editBtn = document.querySelector('.editItem');
   const deleteBtn = document.querySelector('.deleteItem');
   const moveBtn = document.querySelector('.moveBtn');
+  const saveBtn = document.querySelector('.saveItem');
+  const capturedInputs = document.querySelectorAll('.wl-modal input');
 
   const url = 'http://localhost:3000/wl/';
 
+  // Edit student data in modal
+  editBtn.addEventListener('click', e => {
+    e.preventDefault();
+    editBtn.classList.add('hide');
+    saveBtn.classList.remove('hide');
+    capturedInputs.forEach(input => {
+      input.disabled = false;
+      input.classList.remove('.disabled-input');
+      input.classList.add('enabled-input');
+    });
+    console.log(capturedInputs);
+  });
+
+  // Save edited students data
+  saveBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const capturedInputsArray = [...capturedInputs];
+    editBtn.classList.remove('hide');
+    saveBtn.classList.add('hide');
+    capturedInputs.forEach(input => {
+      input.disabled = true;
+      input.classList.remove('enabled-input');
+      input.classList.add('disabled-input');
+    });
+
+    fetch(`http://localhost:3000/wl/${modalData.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(getKeyValuesPairs(capturedInputsArray)),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(() => {
+        document.querySelector('.group-list').innerHTML = '';
+        fetchData(url);
+      });
+  });
+
+  // Event to delete waiting list item
   deleteBtn.addEventListener('click', () => {
     fetch(`${url}${modalData.id}`, {
       method: 'DELETE',
@@ -116,6 +129,7 @@ function wlModal(modal, modalData) {
     fetchData(url);
   });
 
+  // Event to move waiting list item to group list
   moveBtn.addEventListener('click', () => {
     const mtgModal = document.querySelector('.mtg-modal');
     const mtgInnerModal = mtgModal.firstElementChild;
@@ -152,11 +166,9 @@ function wlModal(modal, modalData) {
                   });
                 fetch('http://localhost:3000/wl')
                   .then(resp => resp.json())
-                  .then(wlData => {
-                    new WaitingList(
-                      wlData,
-                      document.querySelector('.group-list')
-                    );
+                  .then(() => {
+                    document.querySelector('.group-list').innerHTML = '';
+                    fetchData(url);
                   });
               });
           });
@@ -171,80 +183,7 @@ function wlModal(modal, modalData) {
 function waitingListForm(modal) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
-  innerModal.innerHTML = `
-  <form class='as-form'>
-    <h4>ADD STUDENT TO WAITING LIST</h4>
-    <div class="as-form-student as-form-select tab">
-      <div class='input-control'>
-        <select class='as-form-input' name='gender'>
-          <option selected disabled hidden>Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='first_name' placeholder='Name' data-validation='string'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='last_name' placeholder='Last Name' data-validation='string'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type='date' class='as-form-input flatpickr' name='birth_date' placeholder='Birthday' data-validation='date'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      <div class='input-control'>
-        <input type="text" class='as-form-input flatpickr' name='start_kg_date' placeholder='Date, when want to start' data-validation='date'>
-        <span class="separator"> </span>
-        <p class='error-msg'></p>
-      </div>
-      
-    </div>
-    
-    <div class='as-form-parents tab'>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='mothers_name' placeholder='Mothers Name' data-validation='string'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='mothers_last_name' placeholder='Mothers Last Name' data-validation='string'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='tel' class='as-form-input' name='mothers_phone' placeholder='Mothers Phone Number' data-validation='phone'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='fathers_name' placeholder='Fathers Name' data-validation='string''>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='text' class='as-form-input' name='fathers_last_name' placeholder='Fathers Last Name' data-validation='string''>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type='tel' class='as-form-input' name='fathers_phone' placeholder='Fathers Phone Number' data-validation='phone'>
-        <span class="separator"> </span>
-      </div>
-      <div class='input-control'>
-        <input type="text" class='as-form-input' name='notes' placeholder="Notes">
-        <span class="separator"> </span>
-      </div>
-    </div>
-      
-    <div class='as-form-buttons'>
-      <button type="button" class='btn' id="prevBtn">STUDENT INFO</button>
-      <button type="button" class='btn' id="nextBtn">PARENTS INFO</button>
-      <input type='submit' value='SUBMIT' name='form-submit'>
-    </div>
-    
-  </form>
-  `;
+  innerModal.innerHTML = addToWlForm();
   // Adds close button to modal
   modalClose(modal, innerModal);
 
@@ -343,15 +282,21 @@ function waitingListForm(modal) {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-    modal.classList.remove('modal-open');
-    document.querySelector('.group-list').innerHTML = '';
-    fetch('http://localhost:3000/wl')
+    })
       .then(resp => resp.json())
-      .then(wlData => {
-        new WaitingList(wlData, document.querySelector('.group-list'));
+      .then(() => {
+        modal.classList.remove('modal-open');
+        document.querySelector('.table-style').remove();
+        fetch('http://localhost:3000/wl')
+          .then(resp => resp.json())
+          .then(wlData => {
+            new WaitingList(wlData, document.querySelector('.group-list'));
+          });
       });
   }
 
   formSubmit.addEventListener('submit', formSubmitData);
 }
+
+// Button opens "add student to waiting list" form
+addStudentBtn.addEventListener('click', () => waitingListForm(formModal));
