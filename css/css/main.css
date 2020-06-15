@@ -1,5 +1,48 @@
 /*Main style*/
 /*Colors*/
+/*TEST*/
+/*UTILS*/
+.hide {
+  display: none;
+}
+
+.btn {
+  background-color: #1a233c;
+  color: #F1F5FC;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  border: none;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.disabled-input {
+  background-color: transparent;
+  width: 100%;
+  color: #1a233c;
+  padding: 3px 5px;
+  font-size: 18px;
+  font-weight: 900;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+.enabled-input {
+  background-color: white;
+  margin: 0px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #636A7F;
+  transition: all 0.5s;
+}
+
+/*UTILS END*/
 * {
   padding: 0;
   margin: 0;
@@ -19,7 +62,8 @@ body {
 }
 
 /*MODAL*/
-.modal {
+.modal,
+.mtg-modal {
   position: fixed;
   background: rgba(28, 35, 60, 0.3);
   z-index: 3;
@@ -34,16 +78,215 @@ body {
   opacity: 0;
   transition: opacity 0.5s;
 }
-.modal .inner-modal {
+.modal label,
+.mtg-modal label {
+  font-size: 15px;
+}
+.modal .inner-modal,
+.modal .mtg-inner-modal,
+.mtg-modal .inner-modal,
+.mtg-modal .mtg-inner-modal {
   position: relative;
   background-color: #f7f7f7;
-  font-size: 1.5em;
-  padding: 25px;
+  padding: 20px;
   display: grid;
   border-radius: 20px;
   box-shadow: 0px 15px 30px -8px #172a45;
 }
-.modal .inner-modal .modal-close {
+.modal .inner-modal .modal-child-info,
+.modal .mtg-inner-modal .modal-child-info,
+.mtg-modal .inner-modal .modal-child-info,
+.mtg-modal .mtg-inner-modal .modal-child-info {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+.modal .inner-modal .modal-child-info .modal-child-name,
+.modal .mtg-inner-modal .modal-child-info .modal-child-name,
+.mtg-modal .inner-modal .modal-child-info .modal-child-name,
+.mtg-modal .mtg-inner-modal .modal-child-info .modal-child-name {
+  display: grid;
+}
+.modal .inner-modal .modal-child-info .modal-child-age,
+.modal .mtg-inner-modal .modal-child-info .modal-child-age,
+.mtg-modal .inner-modal .modal-child-info .modal-child-age,
+.mtg-modal .mtg-inner-modal .modal-child-info .modal-child-age {
+  display: grid;
+}
+.modal .inner-modal .modal-child-info .modal-child-age input,
+.modal .mtg-inner-modal .modal-child-info .modal-child-age input,
+.mtg-modal .inner-modal .modal-child-info .modal-child-age input,
+.mtg-modal .mtg-inner-modal .modal-child-info .modal-child-age input {
+  display: block;
+}
+.modal .inner-modal .modal-child-info .modal-child-age p,
+.modal .mtg-inner-modal .modal-child-info .modal-child-age p,
+.mtg-modal .inner-modal .modal-child-info .modal-child-age p,
+.mtg-modal .mtg-inner-modal .modal-child-info .modal-child-age p {
+  color: #1a233c;
+  padding: 3px 5px;
+  font-size: 18px;
+  font-weight: 900;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+.modal .inner-modal .modal-parents-info,
+.modal .mtg-inner-modal .modal-parents-info,
+.mtg-modal .inner-modal .modal-parents-info,
+.mtg-modal .mtg-inner-modal .modal-parents-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 40px 0;
+}
+.modal .inner-modal .modal-parents-info .modal-mother-info,
+.modal .inner-modal .modal-parents-info .modal-father-info,
+.modal .mtg-inner-modal .modal-parents-info .modal-mother-info,
+.modal .mtg-inner-modal .modal-parents-info .modal-father-info,
+.mtg-modal .inner-modal .modal-parents-info .modal-mother-info,
+.mtg-modal .inner-modal .modal-parents-info .modal-father-info,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-mother-info,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-father-info {
+  display: grid;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: 2px solid #1a233c;
+  border-radius: 20px;
+}
+.modal .inner-modal .modal-parents-info .modal-mother-info h4,
+.modal .inner-modal .modal-parents-info .modal-father-info h4,
+.modal .mtg-inner-modal .modal-parents-info .modal-mother-info h4,
+.modal .mtg-inner-modal .modal-parents-info .modal-father-info h4,
+.mtg-modal .inner-modal .modal-parents-info .modal-mother-info h4,
+.mtg-modal .inner-modal .modal-parents-info .modal-father-info h4,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-mother-info h4,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-father-info h4 {
+  display: grid;
+  justify-self: center;
+  text-align: center;
+  padding: 0 10px;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+}
+.modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone,
+.modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone,
+.modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone,
+.modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone,
+.mtg-modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone,
+.mtg-modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone {
+  display: flex;
+}
+.modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone .fa-phone,
+.modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone .fa-phone,
+.modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone .fa-phone,
+.modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone .fa-phone,
+.mtg-modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone .fa-phone,
+.mtg-modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone .fa-phone,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone .fa-phone,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone .fa-phone {
+  font-size: 12px;
+  align-self: center;
+}
+.modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone i,
+.modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone i,
+.modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone i,
+.modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone i,
+.mtg-modal .inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone i,
+.mtg-modal .inner-modal .modal-parents-info .modal-father-info .modal-parents-phone i,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-mother-info .modal-parents-phone i,
+.mtg-modal .mtg-inner-modal .modal-parents-info .modal-father-info .modal-parents-phone i {
+  color: #1c233c;
+  padding: 5px;
+  margin-right: 5px;
+}
+.modal .inner-modal .modal-child-notes,
+.modal .mtg-inner-modal .modal-child-notes,
+.mtg-modal .inner-modal .modal-child-notes,
+.mtg-modal .mtg-inner-modal .modal-child-notes {
+  display: grid;
+  border: 2px solid #1a233c;
+  border-radius: 20px;
+}
+.modal .inner-modal .modal-child-notes h4,
+.modal .mtg-inner-modal .modal-child-notes h4,
+.mtg-modal .inner-modal .modal-child-notes h4,
+.mtg-modal .mtg-inner-modal .modal-child-notes h4 {
+  display: grid;
+  justify-self: center;
+  text-align: center;
+  padding: 0 10px;
+  margin-top: -10px;
+  background-color: #f7f7f7;
+}
+.modal .inner-modal .modal-child-notes textarea,
+.modal .mtg-inner-modal .modal-child-notes textarea,
+.mtg-modal .inner-modal .modal-child-notes textarea,
+.mtg-modal .mtg-inner-modal .modal-child-notes textarea {
+  padding: 0 10px;
+}
+.modal .inner-modal .modal-control-btn,
+.modal .mtg-inner-modal .modal-control-btn,
+.mtg-modal .inner-modal .modal-control-btn,
+.mtg-modal .mtg-inner-modal .modal-control-btn {
+  display: flex;
+  justify-content: center;
+}
+.modal .inner-modal .modal-control-btn button,
+.modal .mtg-inner-modal .modal-control-btn button,
+.mtg-modal .inner-modal .modal-control-btn button,
+.mtg-modal .mtg-inner-modal .modal-control-btn button {
+  width: 30%;
+}
+.modal .inner-modal .mtg-inner-modal,
+.modal .mtg-inner-modal .mtg-inner-modal,
+.mtg-modal .inner-modal .mtg-inner-modal,
+.mtg-modal .mtg-inner-modal .mtg-inner-modal {
+  display: flex;
+}
+.modal .inner-modal .mtg-inner-modal .mtgWrapper,
+.modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper,
+.mtg-modal .inner-modal .mtg-inner-modal .mtgWrapper,
+.mtg-modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper {
+  padding: 40px;
+  margin: 20px 40px;
+  font-size: 30px;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0px 4px 5px 2px rgba(28, 35, 60, 0.19);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.modal .inner-modal .mtg-inner-modal .mtgWrapper i,
+.modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper i,
+.mtg-modal .inner-modal .mtg-inner-modal .mtgWrapper i,
+.mtg-modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper i {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.modal .inner-modal .mtg-inner-modal .mtgWrapper h5,
+.modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper h5,
+.mtg-modal .inner-modal .mtg-inner-modal .mtgWrapper h5,
+.mtg-modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper h5 {
+  padding-top: 5px;
+}
+.modal .inner-modal .mtg-inner-modal .mtgWrapper:hover,
+.modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper:hover,
+.mtg-modal .inner-modal .mtg-inner-modal .mtgWrapper:hover,
+.mtg-modal .mtg-inner-modal .mtg-inner-modal .mtgWrapper:hover {
+  transform: translateY(-5px);
+  border: none;
+}
+.modal .inner-modal .modal-close,
+.modal .mtg-inner-modal .modal-close,
+.mtg-modal .inner-modal .modal-close,
+.mtg-modal .mtg-inner-modal .modal-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -56,23 +299,6 @@ body {
   transform: translate(10px, -10px);
   box-shadow: 0px 1px 3px 2px rgba(28, 35, 60, 0.19);
   cursor: pointer;
-}
-.modal .inner-modal section {
-  padding: 20px 0;
-  display: grid;
-}
-.modal .inner-modal section .modal-mother-info,
-.modal .inner-modal section .modal-father-info {
-  padding: 10px 20px;
-}
-.modal .inner-modal section i {
-  font-size: 25px;
-  color: #1c233c;
-  padding: 5px;
-  margin-right: 20px;
-}
-.modal .inner-modal section .fa-phone {
-  font-size: 20px;
 }
 
 .modal-open {
@@ -140,37 +366,39 @@ body {
 /*SIDE WRAPPER*/
 .side-wrapper {
   justify-content: center;
+  margin-top: 2rem;
+  margin-right: 1rem;
 }
-
 /*SIDE WRAPPER END*/
 /*HEADER*/
 .header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 3rem;
+  padding: 0rem 0;
+}
+.header .header-description {
+  text-align: left;
+}
+.header .header-description h2 {
+  letter-spacing: 1px;
+  font-size: 25px;
+  font-family: "Rubik", sans-serif;
 }
 .header .management-items {
   display: flex;
-  padding: 20px;
+  padding: 0px;
 }
-.header .management-items .wl-add-item {
-  background-color: #1a233c;
-  color: #F1F5FC;
-  padding: 7px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  border: none;
-  transition: all 0.2s ease-out;
-  cursor: pointer;
+.header .management-items .add-student-btn {
+  font-size: 12px;
+  letter-spacing: 0px;
+  padding-right: 25px;
 }
-.header .management-items .wl-add-item i {
-  margin-right: 10px;
-}
-.header .management-items .wl-add-item:hover {
-  transform: translateY(-3px);
+.header .management-items .add-student-btn i {
+  font-size: 15px;
+  margin-right: 15px;
 }
 
 /*HEADER*/
@@ -183,6 +411,7 @@ body {
 }
 .slider .sliderCard {
   background-color: #ffffff;
+  color: #383838;
   margin: 20px;
   padding: 20px;
   text-align: center;
@@ -193,19 +422,22 @@ body {
 }
 .slider .sliderCard i {
   font-size: 20px;
-  padding: 5px;
+  padding: 10px;
   border-radius: 50%;
 }
 .slider .sliderCard h5 {
-  font-weight: 300;
   font-size: 15px;
-  padding: 5px 0;
+  padding: 7px 0 10px 0;
+  letter-spacing: 0.5px;
 }
 .slider .sliderCard span {
   font-size: 30px;
 }
 .slider .sliderCard:hover {
   transform: translateY(-10px);
+}
+.slider [data-clicked=true] {
+  box-shadow: 0px 2px 7px 2px #7d8296;
 }
 
 /*SLIDER END*/
@@ -221,19 +453,27 @@ body {
   padding: 10px;
 }
 .group-list .table-style .table-row {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 70% 30%;
   margin: 10px;
-  transition: all 0.2s ease-in;
+  transition: all 0.3s ease-in-out;
   justify-content: space-between;
 }
 .group-list .table-style .table-row .table-cell-wrapper {
   display: flex;
 }
 .group-list .table-style .table-row .table-cell {
-  padding: 10px 10px;
+  display: flex;
+  align-self: center;
+  padding: 5px 5px;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+}
+.group-list .table-style .table-row .table-cell p {
+  align-self: center;
 }
 .group-list .table-style .table-row .table-cell i {
+  margin-right: 5px;
   font-size: 15px;
   border-radius: 50%;
 }
@@ -243,26 +483,37 @@ body {
   padding: 0 10px;
   border-radius: 0%;
 }
+.group-list .table-style .table-row .age-cell {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+.group-list .table-style .table-row .age-cell i {
+  align-self: center;
+}
+.group-list .table-style .table-row .age-cell p {
+  font-family: "Nunito", sans-serif;
+}
 .group-list .table-style .table-row:hover {
   background-color: #ffffff;
-  border-radius: 15px;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0px 2px 5px 3px rgba(28, 35, 60, 0.19);
-  transform: translateY(-5px);
+  box-shadow: 0px 3px 5px 2px rgba(28, 35, 60, 0.19);
+  transform: translateY(-3px);
 }
 
 /*TABLE END*/
 /*FORM*/
 .as-form {
   display: grid;
-  padding: 50px;
+  padding: 5px 30px;
 }
 .as-form ::placeholder {
   color: #636A7F;
 }
 .as-form .tab {
   display: none;
-  margin: 20px;
+  margin: 10px;
 }
 .as-form .input-control {
   position: relative;
@@ -303,6 +554,17 @@ body {
   border: none;
   transition: all 0.2s ease-out;
   cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0px;
+}
+.as-form .as-form-buttons {
+  display: grid;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+.as-form .as-form-buttons button {
+  font-size: 12px;
+  letter-spacing: 0px;
 }
 .as-form .as-form-select select {
   color: #636A7F;
@@ -335,32 +597,5 @@ body {
 }
 
 /*FORM END*/
-/*UTILS*/
-.btn {
-  background-color: #1a233c;
-  color: #F1F5FC;
-  padding: 7px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  border: none;
-  transition: all 0.2s ease-out;
-  cursor: pointer;
-}
-
-.disabled-input {
-  background-color: transparent;
-  margin: 0px 0;
-  padding: 10px;
-  font-size: 20px;
-  border: none;
-  outline: none;
-}
-.disabled-input:focus + .separator {
-  transform: scaleX(1) translateY(-2px);
-  opacity: 1;
-}
-
-/*UTILS END*/
 
 /*# sourceMappingURL=main.css.map */

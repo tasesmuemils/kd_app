@@ -7,21 +7,12 @@ export function genderTranform(gender) {
     : `<i class="fas fa-venus" style='background: #f5e0f7; color:#ac7ab8; padding: 8px 11px;'></i>`;
 }
 
-// // Tranforms date to dd.mm.yyyy
-// export function convertDatoToAge(birthdate) {
-//   const convertBirthDate = new Date(
-//     birthdate
-//       .split('.')
-//       .reverse()
-//       .join('/')
-//   );
-
-//   const dateNow = new Date();
-//   const diff = dateNow - convertBirthDate;
-//   const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-//   const years = Math.floor(months / 12);
-//   const month = months % 12;
-//   return `${years} years and ${month} months old`;
+// Tranforms dd.mm.yyyy to date to use in date-fns
+// export function tranformDate(dbDate) {
+//   console.log(dbDate);
+//   const fullDate = new Date(`"${dbDate}"`);
+//   console.log(fullDate);
+//   return fullDate;
 // }
 
 // Gets input values form form and tranforms them in to key/values for object
@@ -45,4 +36,74 @@ export function modalClose(modal, innerModal) {
     modal.classList.remove('modal-open');
   });
   innerModal.insertAdjacentElement('beforeend', closeModalEl);
+}
+
+// FORM PAGES
+export function formPages(formTab, formSubmit) {
+  // Current tab index
+  let currentTabIndex = 0;
+
+  // Shows first tab of the form
+  function showFormTab(n) {
+    formTab[n].style.display = 'grid';
+    document.querySelector('#prevBtn').style.display = 'none';
+    document.querySelector('input[type="submit"]').style.display = 'none';
+  }
+  showFormTab(currentTabIndex);
+
+  // Shows next form tab or switches to previous tab
+  function nextFormTab(n) {
+    if (!formValidation(formSubmit.querySelectorAll('.as-form-student input')))
+      return false;
+    formTab[currentTabIndex].style.display = 'none';
+    currentTabIndex += n;
+    formTab[currentTabIndex].style.display = 'grid';
+    if (currentTabIndex !== 0) {
+      document.querySelector('#nextBtn').style.display = 'none';
+      document.querySelector('#prevBtn').style.display = 'inline';
+      document.querySelector('input[type="submit"]').style.display = 'inline';
+    } else {
+      document.querySelector('#nextBtn').style.display = 'inline';
+      document.querySelector('#prevBtn').style.display = 'none';
+      document.querySelector('input[type="submit"]').style.display = 'none';
+    }
+  }
+
+  // Form "next" and "previous" button
+  document.querySelector('#nextBtn').addEventListener('click', () => {
+    nextFormTab(1);
+  });
+  document.querySelector('#prevBtn').addEventListener('click', () => {
+    nextFormTab(-1);
+  });
+}
+
+// FORM VALIDATION
+export function formValidation(formStudentInputs) {
+  // Error messages element handling
+  function insertErrorMessage(errElement, errText) {
+    errElement.classList.add('input-err-msg');
+    errElement.textContent = errText;
+  }
+
+  // Object with error messages
+  const errorMessages = {
+    empty: 'Field cant be empty',
+  };
+
+  // // If input value is empty
+  let valid = true;
+  formStudentInputs.forEach(input => {
+    console.log();
+    // Error messages element
+    const errorMsgEl = input.parentElement.lastElementChild;
+    if (input.value === '') {
+      // If input value is empty
+      insertErrorMessage(errorMsgEl, errorMessages.empty);
+      valid = false;
+    } else if (valid) {
+      insertErrorMessage(errorMsgEl, '');
+    }
+  });
+  return valid;
 }

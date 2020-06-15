@@ -5,9 +5,14 @@ import {
   genderTranform,
   modalClose,
   getKeyValuesPairs,
+  formPages,
 } from '../utils/utils.js';
 // Templates
-import { wlStudentTmpl, addToWlForm } from '../utils/templates.js';
+import {
+  wlStudentTmpl,
+  addToWlForm,
+  studentRowTemplate,
+} from '../utils/templates.js';
 
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
@@ -46,17 +51,7 @@ WaitingList.prototype.newTable = function(wlData) {
     studentRow.addEventListener('click', () =>
       wlModal(document.querySelector('.modal'), student)
     );
-    const studentRowContent = `
-            <div class="table-cell-wrapper">
-                <div class="table-cell">${i + 1}</div>
-                <div class="table-cell">${genderTranform(student.gender)} ${
-      student.first_name
-    } ${student.last_name}</div>
-            </div>
-            <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${
-              student.birth_date
-            }</div>
-        `;
+    const studentRowContent = studentRowTemplate(student, i, genderTranform);
 
     // Append row content to row and row to table
     studentRow.insertAdjacentHTML('beforeend', studentRowContent);
@@ -76,7 +71,9 @@ function wlModal(modal, modalData) {
   const deleteBtn = document.querySelector('.deleteItem');
   const moveBtn = document.querySelector('.moveBtn');
   const saveBtn = document.querySelector('.saveItem');
-  const capturedInputs = document.querySelectorAll('.wl-modal input');
+  const capturedInputs = document.querySelectorAll(
+    '.wl-modal input, .wl-modal textarea, .wl-modal select'
+  );
 
   const url = 'http://localhost:3000/wl/';
 
@@ -119,7 +116,7 @@ function wlModal(modal, modalData) {
       });
   });
 
-  // Event to delete waiting list item
+  // Delete item from list
   deleteBtn.addEventListener('click', () => {
     fetch(`${url}${modalData.id}`, {
       method: 'DELETE',
@@ -139,6 +136,7 @@ function wlModal(modal, modalData) {
       .then(groups => {
         groups.forEach(group => {
           const mtgWrapper = document.createElement('div');
+          mtgWrapper.classList.add('mtgWrapper');
           mtgWrapper.innerHTML = `
             <figure>${group.group_icon}</figure>
             <h5>${group.group_name}</h5>
@@ -176,6 +174,7 @@ function wlModal(modal, modalData) {
         });
       });
     modalClose(mtgModal, mtgInnerModal);
+    // mtgInnerModal.innerHTML = '';
   });
 }
 
@@ -190,87 +189,20 @@ function waitingListForm(modal) {
   // Selecting form and form tabs, also index for first tab
   const formSubmit = document.querySelector('.as-form');
   const formInputsArray = [...formSubmit.querySelectorAll('.as-form-input')];
-  console.log(formInputsArray);
   const formTab = document.querySelectorAll('.tab');
 
   // Date format with flatpickr
   flatpickr('.flatpickr', {
     dateFormat: 'd.m.Y',
   });
-  // Current tab index
-  let currentTabIndex = 0;
 
-  // Shows first tab of the form
-  function showFormTab(n) {
-    formTab[n].style.display = 'grid';
-    document.querySelector('#prevBtn').style.display = 'none';
-    document.querySelector('input[type="submit"]').style.display = 'none';
-  }
-  showFormTab(currentTabIndex);
-
-  // Form validation
-  function formValidation() {
-    // Error messages element handling
-    function insertErrorMessage(errElement, errText) {
-      errElement.classList.add('input-err-msg');
-      errElement.textContent = errText;
-    }
-
-    // Object with error messages
-    const errorMessages = {
-      empty: 'Field cant be empty',
-    };
-
-    // If input value is empty
-    const formStudentInputs = formSubmit.querySelectorAll(
-      '.as-form-student input'
-    );
-    console.log(formStudentInputs);
-    let valid = true;
-    formStudentInputs.forEach(input => {
-      console.log();
-      // Error messages element
-      const errorMsgEl = input.parentElement.lastElementChild;
-      if (input.value === '') {
-        // If input value is empty
-        insertErrorMessage(errorMsgEl, errorMessages.empty);
-        valid = false;
-      } else if (valid) {
-        insertErrorMessage(errorMsgEl, '');
-      }
-    });
-    return valid;
-  }
-
-  // Shows next form tab or switches to previous tab
-  function nextFormTab(n) {
-    if (!formValidation()) return false;
-    formTab[currentTabIndex].style.display = 'none';
-    currentTabIndex += n;
-    formTab[currentTabIndex].style.display = 'grid';
-    if (currentTabIndex !== 0) {
-      document.querySelector('#nextBtn').style.display = 'none';
-      document.querySelector('#prevBtn').style.display = 'inline';
-      document.querySelector('input[type="submit"]').style.display = 'inline';
-    } else {
-      document.querySelector('#nextBtn').style.display = 'inline';
-      document.querySelector('#prevBtn').style.display = 'none';
-      document.querySelector('input[type="submit"]').style.display = 'none';
-    }
-  }
-
-  // Form "next" and "previous" button
-  document.querySelector('#nextBtn').addEventListener('click', () => {
-    nextFormTab(1);
-  });
-  document.querySelector('#prevBtn').addEventListener('click', () => {
-    nextFormTab(-1);
-  });
+  // FORM PAGES
+  formPages(formTab, formSubmit);
 
   function formSubmitData(e) {
     e.preventDefault();
 
-    formValidation();
+    // VALIDATION MUST BE HERE
     const url = 'http://localhost:3000/wl';
     const convertedObject = getKeyValuesPairs(formInputsArray);
     // Random ID

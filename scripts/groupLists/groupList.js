@@ -3,8 +3,14 @@ import {
   genderTranform,
   modalClose,
   getKeyValuesPairs,
+  formPages,
 } from '../utils/utils.js';
-import { groupStudentTmpl, addToGroupForm } from '../utils/templates.js';
+import {
+  groupStudentTmpl,
+  addToGroupForm,
+  sliderCardContent,
+  studentRowTemplate,
+} from '../utils/templates.js';
 
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
@@ -39,11 +45,7 @@ function sliderData(groupData, students) {
       }
     });
   });
-  sliderInnerCard.innerHTML = `
-    <figure>${groupData.group_icon}</figure>
-    <h5 data-groupId='${groupData.id}'>${groupData.group_name}</h5>
-    <p><span>${students.length}</span> /20</p>
-  `;
+  sliderInnerCard.innerHTML = sliderCardContent(groupData, students);
   slider.insertAdjacentElement('beforeend', sliderInnerCard);
   new GroupList(groupData, students, groupListEl);
 }
@@ -85,17 +87,7 @@ GroupList.prototype.newTable = function(groupData, studentsData) {
     studentRow.addEventListener('click', () =>
       groupModal(document.querySelector('.modal'), student, groupData)
     );
-    const studentRowContent = `
-            <div class="table-cell-wrapper">
-                <div class="table-cell">${i + 1}</div>
-                <div class="table-cell">${genderTranform(student.gender)} ${
-      student.first_name
-    } ${student.last_name}</div>
-            </div>
-            <div class="table-cell age-cell"><i class="age-icon far fa-calendar-alt"></i>${
-              student.birth_date
-            }</div>
-        `;
+    const studentRowContent = studentRowTemplate(student, i, genderTranform);
 
     // Append row content to row and row to table
     studentRow.insertAdjacentHTML('beforeend', studentRowContent);
@@ -129,7 +121,7 @@ function updateGroupsData(groupData, url) {
 
 // Creates and opens modal for group list item
 function groupModal(modal, modalData, groupData) {
-  console.log(groupData);
+  console.log(groupData, modalData);
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
   innerModal.innerHTML = groupStudentTmpl(modalData);
@@ -140,11 +132,20 @@ function groupModal(modal, modalData, groupData) {
   const editBtn = document.querySelector('.editItem');
   const saveBtn = document.querySelector('.saveItem');
 
-  const capturedInputs = document.querySelectorAll('.group-modal input');
+  const capturedInputs = document.querySelectorAll(
+    '.group-modal input, .group-modal textarea, .group-modal select'
+  );
 
   const url = `http://localhost:3000/students/${modalData.id}`;
 
-  // Delete student
+  // Showing right gender option from database
+  document.querySelectorAll('.group-modal select option').forEach(option => {
+    if (option.value === modalData.gender) {
+      option.selected = true;
+    }
+  });
+
+  // Delete item from list
   deleteBtn.addEventListener('click', e => {
     e.preventDefault();
     fetch(url, {
@@ -178,6 +179,7 @@ function groupModal(modal, modalData, groupData) {
   saveBtn.addEventListener('click', e => {
     e.preventDefault();
     const capturedInputsArray = [...capturedInputs];
+    console.log(capturedInputsArray);
     editBtn.classList.remove('hide');
     saveBtn.classList.add('hide');
     capturedInputs.forEach(input => {
@@ -235,80 +237,13 @@ function groupForm(modal) {
   flatpickr('.flatpickr', {
     dateFormat: 'd.m.Y',
   });
-  // Current tab index
-  let currentTabIndex = 0;
 
-  // Shows first tab of the form
-  function showFormTab(n) {
-    formTab[n].style.display = 'grid';
-    document.querySelector('#prevBtn').style.display = 'none';
-    document.querySelector('input[type="submit"]').style.display = 'none';
-  }
-  showFormTab(currentTabIndex);
-
-  // Form validation
-  function formValidation() {
-    // Error messages element handling
-    function insertErrorMessage(errElement, errText) {
-      errElement.classList.add('input-err-msg');
-      errElement.textContent = errText;
-    }
-
-    // Object with error messages
-    const errorMessages = {
-      empty: 'Field cant be empty',
-    };
-
-    // If input value is empty
-    const formStudentInputs = formSubmit.querySelectorAll(
-      '.as-form-student input'
-    );
-    console.log(formStudentInputs);
-    let valid = true;
-    formStudentInputs.forEach(input => {
-      console.log();
-      // Error messages element
-      const errorMsgEl = input.parentElement.lastElementChild;
-      if (input.value === '') {
-        // If input value is empty
-        insertErrorMessage(errorMsgEl, errorMessages.empty);
-        valid = false;
-      } else if (valid) {
-        insertErrorMessage(errorMsgEl, '');
-      }
-    });
-    return valid;
-  }
-
-  // Shows next form tab or switches to previous tab
-  function nextFormTab(n) {
-    if (!formValidation()) return false;
-    formTab[currentTabIndex].style.display = 'none';
-    currentTabIndex += n;
-    formTab[currentTabIndex].style.display = 'grid';
-    if (currentTabIndex !== 0) {
-      document.querySelector('#nextBtn').style.display = 'none';
-      document.querySelector('#prevBtn').style.display = 'inline';
-      document.querySelector('input[type="submit"]').style.display = 'inline';
-    } else {
-      document.querySelector('#nextBtn').style.display = 'inline';
-      document.querySelector('#prevBtn').style.display = 'none';
-      document.querySelector('input[type="submit"]').style.display = 'none';
-    }
-  }
-
-  // Form "next" and "previous" button
-  document.querySelector('#nextBtn').addEventListener('click', () => {
-    nextFormTab(1);
-  });
-  document.querySelector('#prevBtn').addEventListener('click', () => {
-    nextFormTab(-1);
-  });
+  // FORM PAGES
+  formPages(formTab, formSubmit);
 
   function formSubmitData(e) {
     e.preventDefault();
 
-    formValidation();
     const convertedObject = getKeyValuesPairs(formInputsArray);
     // Random ID
     convertedObject.id = Math.floor(Math.random() * 300);

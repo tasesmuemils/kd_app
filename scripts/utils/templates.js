@@ -1,41 +1,67 @@
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+
 export function groupStudentTmpl(modalData) {
   return `
     <form class="group-modal">
       <section class="modal-child-info">
 
         <div class="modal-child-name">
-          <label>Name:</label>
+          <label>NAME</label>
           <input type="text" name='first_name' class="disabled-input" value="${modalData.first_name}" disabled>
-          <label>Last name:</label>
+          <label>LAST NAME</label>
           <input type="text" name="last_name" class="disabled-input" value="${modalData.last_name}" disabled>
+          <label>GENDER</label>
+          <select class='disabled-input' name='gender' disabled>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
         </div>
-        <div>
-          <i class="fas fa-birthday-cake"></i>
-          <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
+        <div class="modal-child-age">
+          <div>
+            <label>BIRTHDAY</label>
+            <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
+          </div>
+          <div>
+            <label>AGE</label>
+            <p>${modalData.birth_date}</p>
+          </div>
         </div>
-        <p><i class="far fa-calendar-alt"></i> ${modalData.birth_date}</p>
-        
+      
       </section>
       <section class="modal-parents-info">
         <div class="modal-mother-info">
-          <p>Mother: <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled><input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled></p>
-          <label><i class="fas fa-phone"></i></label>
-          <input type="text" name='mothers_phone' class="disabled-input" value="${modalData.mothers_phone}" disabled>
+          <h4>MOTHER</h4>
+          <label>NAME</label>
+          <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled>
+          <label>LAST NAME</label>
+          <input type="text" name='mothers_last_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled>
+          <div class="modal-parents-phone">
+            <i class="fas fa-phone"></i>
+            <input type="text" name='mothers_phone' class="disabled-input" value="${modalData.mothers_phone}" disabled>
+          </div>
         </div>
         <div class="modal-father-info">
-          <p>Father: <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled><input type="text" name='mothers_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled></p>
-          <label><i class="fas fa-phone"></i></label>
-          <input type="text" name='fathers_phone' class="disabled-input" value="${modalData.fathers_phone}" disabled>
+          <h4>FATHER</h4>
+          <label>NAME</label>
+          <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled>
+          <label>LAST NAME</label>
+          <input type="text" name='fathers_last_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled>
+          <div class="modal-parents-phone">
+            <i class="fas fa-phone"></i>
+            <input type="text" name='fathers_phone' class="disabled-input" value="${modalData.fathers_phone}" disabled>
+          <div>
         </div>
       </section>
+
       <section class="modal-child-notes">
-        <label><i class="fas fa-sticky-note"></i></label>
-        <input type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>
+          <h4>NOTES</h4>
+          <textarea type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>${modalData.notes}</textarea>
       </section>
+      
       <section class="modal-control-btn">
-        <button class='editItem btn'>Edit</button>
-        <button class='deleteItem btn'>Delete</button> 
-        <button class='saveItem btn hide'>Save</button>
+        <button class='editItem btn'>EDIT</button>
+        <button class='deleteItem btn'>DELETE</button> 
+        <button class='saveItem btn hide'>SAVE</button>
       </section>
     </form>
   `;
@@ -103,7 +129,7 @@ export function addToGroupForm() {
           <span class="separator"> </span>
         </div>
         <div class='input-control'>
-          <input type="text" class='as-form-input' name='notes' placeholder="Notes">
+          <textarea type="text" class='as-form-input' name='notes' placeholder="Notes"></textarea>
           <span class="separator"> </span>
         </div>
       </div>
@@ -122,30 +148,65 @@ export function wlStudentTmpl(modalData) {
   return `
     <div class="wl-modal">
       <section class="modal-child-info">
-        <input type="text" name='first_name' class="disabled-input" value="${modalData.first_name}" disabled>
-        <input type="text" name="last_name" class="disabled-input" value="${modalData.last_name}" disabled>
-        <label><i class="fas fa-birthday-cake"></i></label>
-        <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
-        <p><i class="far fa-calendar-alt"></i> ${modalData.birth_date}</p>
-        <p>Date, when want to start: <input type="text" name='birth_date' class="disabled-input" value="${modalData.start_kg_date}" disabled></p>
+        <div class="modal-child-name">
+          <label>NAME</label>
+          <input type="text" name='first_name' class="disabled-input" value="${modalData.first_name}" disabled>
+          <label>LAST NAME</label>
+          <input type="text" name="last_name" class="disabled-input" value="${modalData.last_name}" disabled>
+          <label>GENDER</label>
+          <select class='disabled-input' name='gender' disabled>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="modal-child-age">
+          <div>
+            <label>BIRTHDAY</label>
+            <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
+          </div>
+          <div>
+            <label>AGE</label>
+            <p>${modalData.birth_date}</p>
+          </div>
+          <div>
+            <label>Date, when want to start</label>
+            <input type="text" name='birth_date' class="disabled-input" value="${modalData.start_kg_date}" disabled>
+          </div>
+          
+        </div>
+    
       </section>
       <section class="modal-parents-info">
         <div class="modal-mother-info">
-            <p>Mother: <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled><input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled></p>
-            <label><i class="fas fa-phone"></i></label>
+          <h4>MOTHER</h4>
+          <label>NAME</label>
+          <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled>
+          <label>LAST NAME</label>
+          <input type="text" name='mothers_last_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled>
+          <div class="modal-parents-phone">
+            <i class="fas fa-phone"></i>
             <input type="text" name='mothers_phone' class="disabled-input" value="${modalData.mothers_phone}" disabled>
+          </div>
         </div>
         <div class="modal-father-info">
-            <p>Father: <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled><input type="text" name='mothers_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled></p>
-            <label><i class="fas fa-phone"></i></label>
+          <h4>FATHER</h4>
+          <label>NAME</label>
+          <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled>
+          <label>LAST NAME</label>
+          <input type="text" name='fathers_last_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled>
+          <div class="modal-parents-phone">
+            <i class="fas fa-phone"></i>
             <input type="text" name='fathers_phone' class="disabled-input" value="${modalData.fathers_phone}" disabled>
+          <div>
         </div>
       </section>
+
       <section class="modal-child-notes">
-          <label><i class="fas fa-sticky-note"></i></label>
-          <input type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>
+          <h4>NOTES</h4>
+          <textarea type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>${modalData.notes}</textarea>
       </section>
-      <section>
+
+      <section class="modal-control-btn">
         <button class='editItem btn'>Edit</button>
         <button class='saveItem btn hide'>Save</button>
         <button class='moveBtn btn'>Move to Group</button> 
@@ -236,4 +297,28 @@ export function addToWlForm() {
       
     </form>
     `;
+}
+
+export function sliderCardContent(groupData, students) {
+  return `
+    <figure>${groupData.group_icon}</figure>
+    <h5 data-groupId='${groupData.id}'>${groupData.group_name}</h5>
+    <p><span>${students.length}</span> /20</p>
+  `;
+}
+
+export function studentRowTemplate(student, i, genderTranform) {
+  return `
+    <div class="table-cell-wrapper">
+        <div class="table-cell">${i + 1}</div>
+        <div class="table-cell">
+          ${genderTranform(student.gender)}
+          <p>${student.first_name} ${student.last_name}</p>
+        </div>
+    </div>
+    <div class="table-cell age-cell">
+      <i class="age-icon far fa-calendar-alt"></i>
+      <p>${student.birth_date}</p>
+    </div>
+  `;
 }
