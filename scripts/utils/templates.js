@@ -1,4 +1,5 @@
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { transformDate } from './utils.js';
 
 export function groupStudentTmpl(modalData) {
   return `
@@ -7,9 +8,13 @@ export function groupStudentTmpl(modalData) {
 
         <div class="modal-child-name">
           <label>NAME</label>
-          <input type="text" name='first_name' class="disabled-input" value="${modalData.first_name}" disabled>
+          <input type="text" name='first_name' class="disabled-input" value="${
+            modalData.first_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name="last_name" class="disabled-input" value="${modalData.last_name}" disabled>
+          <input type="text" name="last_name" class="disabled-input" value="${
+            modalData.last_name
+          }" disabled>
           <label>GENDER</label>
           <select class='disabled-input' name='gender' disabled>
             <option>Male</option>
@@ -19,11 +24,15 @@ export function groupStudentTmpl(modalData) {
         <div class="modal-child-age">
           <div>
             <label>BIRTHDAY</label>
-            <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
+            <input type="text" name='birth_date' class="disabled-input" value="${
+              modalData.birth_date
+            }" disabled>
           </div>
           <div>
             <label>AGE</label>
-            <p>${modalData.birth_date}</p>
+            <p>${formatDistanceToNowStrict(
+              new Date(transformDate(modalData.birth_date))
+            )}</p>
           </div>
         </div>
       
@@ -32,30 +41,44 @@ export function groupStudentTmpl(modalData) {
         <div class="modal-mother-info">
           <h4>MOTHER</h4>
           <label>NAME</label>
-          <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled>
+          <input type="text" name='mothers_name' class="disabled-input" value="${
+            modalData.mothers_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name='mothers_last_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled>
+          <input type="text" name='mothers_last_name' class="disabled-input" value="${
+            modalData.mothers_last_name
+          }" disabled>
           <div class="modal-parents-phone">
             <i class="fas fa-phone"></i>
-            <input type="text" name='mothers_phone' class="disabled-input" value="${modalData.mothers_phone}" disabled>
+            <input type="text" name='mothers_phone' class="disabled-input" value="${
+              modalData.mothers_phone
+            }" disabled>
           </div>
         </div>
         <div class="modal-father-info">
           <h4>FATHER</h4>
           <label>NAME</label>
-          <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled>
+          <input type="text" name='fathers_name' class="disabled-input" value="${
+            modalData.fathers_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name='fathers_last_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled>
+          <input type="text" name='fathers_last_name' class="disabled-input" value="${
+            modalData.fathers_last_name
+          }" disabled>
           <div class="modal-parents-phone">
             <i class="fas fa-phone"></i>
-            <input type="text" name='fathers_phone' class="disabled-input" value="${modalData.fathers_phone}" disabled>
+            <input type="text" name='fathers_phone' class="disabled-input" value="${
+              modalData.fathers_phone
+            }" disabled>
           <div>
         </div>
       </section>
 
       <section class="modal-child-notes">
           <h4>NOTES</h4>
-          <textarea type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>${modalData.notes}</textarea>
+          <textarea type="text" name='notes' class="disabled-input" value="${
+            modalData.notes
+          }" disabled>${modalData.notes}</textarea>
       </section>
       
       <section class="modal-control-btn">

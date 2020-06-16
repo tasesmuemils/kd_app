@@ -1,9 +1,11 @@
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import flatpickr from 'flatpickr';
 import {
   genderTranform,
   modalClose,
   getKeyValuesPairs,
   formPages,
+  transformDate,
 } from '../utils/utils.js';
 import {
   groupStudentTmpl,
@@ -14,6 +16,9 @@ import {
 
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
+
+// transformDate(09.06.1993);
+console.log(formatDistanceToNowStrict(new Date(2016, 2, 13)));
 
 // Required variables from html file
 const slider = document.querySelector('.slider');
@@ -122,6 +127,7 @@ function updateGroupsData(groupData, url) {
 // Creates and opens modal for group list item
 function groupModal(modal, modalData, groupData) {
   console.log(groupData, modalData);
+  transformDate(modalData.birth_date);
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
   innerModal.innerHTML = groupStudentTmpl(modalData);

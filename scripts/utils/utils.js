@@ -8,12 +8,29 @@ export function genderTranform(gender) {
 }
 
 // Tranforms dd.mm.yyyy to date to use in date-fns
-// export function tranformDate(dbDate) {
-//   console.log(dbDate);
-//   const fullDate = new Date(`"${dbDate}"`);
-//   console.log(fullDate);
-//   return fullDate;
-// }
+export function transformDate(dbDate) {
+  let convertedDate = dbDate
+    .toString()
+    .split('.')
+    .reverse();
+  if (
+    convertedDate[1].split('')[0] == 0 ||
+    convertedDate[2].split('')[0] == 0
+  ) {
+    const editedConvertedDate = convertedDate.map(item => {
+      if (item.split('')[0] == 0) {
+        const itemEdit = item.split('');
+        itemEdit.shift();
+        return itemEdit[0];
+      }
+      return item;
+    });
+    convertedDate = editedConvertedDate;
+  }
+
+  console.log(convertedDate.join(', '));
+  return convertedDate.join(', ');
+}
 
 // Gets input values form form and tranforms them in to key/values for object
 export function getKeyValuesPairs(formInputs) {
@@ -34,6 +51,7 @@ export function modalClose(modal, innerModal) {
   closeModalEl.textContent = 'X';
   closeModalEl.addEventListener('click', () => {
     modal.classList.remove('modal-open');
+    // innerModal.innerHTML = '';
   });
   innerModal.insertAdjacentElement('beforeend', closeModalEl);
 }

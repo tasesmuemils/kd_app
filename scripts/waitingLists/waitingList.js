@@ -174,7 +174,6 @@ function wlModal(modal, modalData) {
         });
       });
     modalClose(mtgModal, mtgInnerModal);
-    // mtgInnerModal.innerHTML = '';
   });
 }
 
