@@ -75,6 +75,13 @@ function wlModal(modal, modalData) {
     '.wl-modal input, .wl-modal textarea, .wl-modal select'
   );
 
+  // Showing right gender option from database
+  document.querySelectorAll('.wl-modal select option').forEach(option => {
+    if (option.value === modalData.gender) {
+      option.selected = true;
+    }
+  });
+
   const url = 'http://localhost:3000/wl/';
 
   // Edit student data in modal
@@ -94,6 +101,7 @@ function wlModal(modal, modalData) {
   saveBtn.addEventListener('click', e => {
     e.preventDefault();
     const capturedInputsArray = [...capturedInputs];
+    console.log(capturedInputs);
     editBtn.classList.remove('hide');
     saveBtn.classList.add('hide');
     capturedInputs.forEach(input => {
@@ -127,10 +135,17 @@ function wlModal(modal, modalData) {
   });
 
   // Event to move waiting list item to group list
+  let clickedMoveModal = 0;
+
   moveBtn.addEventListener('click', () => {
     const mtgModal = document.querySelector('.mtg-modal');
     const mtgInnerModal = mtgModal.firstElementChild;
+    modalClose(mtgModal, mtgInnerModal);
     mtgModal.classList.add('modal-open');
+    if (clickedMoveModal === 1) {
+      return;
+    }
+    clickedMoveModal = 1;
     fetch('http://localhost:3000/groups')
       .then(resp => resp.json())
       .then(groups => {
@@ -173,7 +188,6 @@ function wlModal(modal, modalData) {
           mtgInnerModal.insertAdjacentElement('beforeend', mtgWrapper);
         });
       });
-    modalClose(mtgModal, mtgInnerModal);
   });
 }
 

@@ -51,7 +51,6 @@ export function modalClose(modal, innerModal) {
   closeModalEl.textContent = 'X';
   closeModalEl.addEventListener('click', () => {
     modal.classList.remove('modal-open');
-    // innerModal.innerHTML = '';
   });
   innerModal.insertAdjacentElement('beforeend', closeModalEl);
 }

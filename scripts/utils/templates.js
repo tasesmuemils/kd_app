@@ -1,4 +1,4 @@
-import { formatDistanceToNowStrict } from 'date-fns';
+import { formatDistanceToNowStrict, formatDistanceStrict } from 'date-fns';
 import { transformDate } from './utils.js';
 
 export function groupStudentTmpl(modalData) {
@@ -32,7 +32,7 @@ export function groupStudentTmpl(modalData) {
             <label>AGE</label>
             <p>${formatDistanceToNowStrict(
               new Date(transformDate(modalData.birth_date))
-            )}</p>
+            )} old</p>
           </div>
         </div>
       
@@ -76,9 +76,11 @@ export function groupStudentTmpl(modalData) {
 
       <section class="modal-child-notes">
           <h4>NOTES</h4>
-          <textarea type="text" name='notes' class="disabled-input" value="${
-            modalData.notes
-          }" disabled>${modalData.notes}</textarea>
+          <div>
+            <textarea type="text" name='notes' class="disabled-input" value="${
+              modalData.notes
+            }" disabled>${modalData.notes}</textarea>
+          </div>
       </section>
       
       <section class="modal-control-btn">
@@ -173,9 +175,13 @@ export function wlStudentTmpl(modalData) {
       <section class="modal-child-info">
         <div class="modal-child-name">
           <label>NAME</label>
-          <input type="text" name='first_name' class="disabled-input" value="${modalData.first_name}" disabled>
+          <input type="text" name='first_name' class="disabled-input" value="${
+            modalData.first_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name="last_name" class="disabled-input" value="${modalData.last_name}" disabled>
+          <input type="text" name="last_name" class="disabled-input" value="${
+            modalData.last_name
+          }" disabled>
           <label>GENDER</label>
           <select class='disabled-input' name='gender' disabled>
             <option>Male</option>
@@ -185,15 +191,26 @@ export function wlStudentTmpl(modalData) {
         <div class="modal-child-age">
           <div>
             <label>BIRTHDAY</label>
-            <input type="text" name='birth_date' class="disabled-input" value="${modalData.birth_date}" disabled>
+            <input type="text" name='birth_date' class="disabled-input" value="${
+              modalData.birth_date
+            }" disabled>
           </div>
           <div>
             <label>AGE</label>
-            <p>${modalData.birth_date}</p>
+            <p>${formatDistanceToNowStrict(
+              new Date(transformDate(modalData.birth_date))
+            )}</p>
           </div>
           <div>
             <label>Date, when want to start</label>
-            <input type="text" name='birth_date' class="disabled-input" value="${modalData.start_kg_date}" disabled>
+            <input type="text" name='start_kg_date' class="disabled-input" value="${
+              modalData.start_kg_date
+            }" disabled>
+            <label>Time till waiting time ends</label>
+            <p>${formatDistanceStrict(
+              new Date(),
+              new Date(transformDate(modalData.start_kg_date))
+            )}</p>
           </div>
           
         </div>
@@ -203,30 +220,47 @@ export function wlStudentTmpl(modalData) {
         <div class="modal-mother-info">
           <h4>MOTHER</h4>
           <label>NAME</label>
-          <input type="text" name='mothers_name' class="disabled-input" value="${modalData.mothers_name}" disabled>
+          <input type="text" name='mothers_name' class="disabled-input" value="${
+            modalData.mothers_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name='mothers_last_name' class="disabled-input" value="${modalData.mothers_last_name}" disabled>
+          <input type="text" name='mothers_last_name' class="disabled-input" value="${
+            modalData.mothers_last_name
+          }" disabled>
           <div class="modal-parents-phone">
             <i class="fas fa-phone"></i>
-            <input type="text" name='mothers_phone' class="disabled-input" value="${modalData.mothers_phone}" disabled>
+            <input type="text" name='mothers_phone' class="disabled-input" value="${
+              modalData.mothers_phone
+            }" disabled>
           </div>
         </div>
         <div class="modal-father-info">
           <h4>FATHER</h4>
           <label>NAME</label>
-          <input type="text" name='fathers_name' class="disabled-input" value="${modalData.fathers_name}" disabled>
+          <input type="text" name='fathers_name' class="disabled-input" value="${
+            modalData.fathers_name
+          }" disabled>
           <label>LAST NAME</label>
-          <input type="text" name='fathers_last_name' class="disabled-input" value="${modalData.fathers_last_name}" disabled>
+          <input type="text" name='fathers_last_name' class="disabled-input" value="${
+            modalData.fathers_last_name
+          }" disabled>
           <div class="modal-parents-phone">
             <i class="fas fa-phone"></i>
-            <input type="text" name='fathers_phone' class="disabled-input" value="${modalData.fathers_phone}" disabled>
+            <input type="text" name='fathers_phone' class="disabled-input" value="${
+              modalData.fathers_phone
+            }" disabled>
           <div>
         </div>
       </section>
 
       <section class="modal-child-notes">
           <h4>NOTES</h4>
-          <textarea type="text" name='notes' class="disabled-input" value="${modalData.notes}" disabled>${modalData.notes}</textarea>
+          <div>
+            <textarea type="text" name='notes' class="disabled-input" value="${
+              modalData.notes
+            }" disabled>${modalData.notes}</textarea>
+          </div>
+          
       </section>
 
       <section class="modal-control-btn">
@@ -341,7 +375,9 @@ export function studentRowTemplate(student, i, genderTranform) {
     </div>
     <div class="table-cell age-cell">
       <i class="age-icon far fa-calendar-alt"></i>
-      <p>${student.birth_date}</p>
+      <p>${formatDistanceToNowStrict(
+        new Date(transformDate(student.birth_date))
+      )} old</p>
     </div>
   `;
 }
