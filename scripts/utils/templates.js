@@ -199,7 +199,7 @@ export function wlStudentTmpl(modalData) {
             <label>AGE</label>
             <p>${formatDistanceToNowStrict(
               new Date(transformDate(modalData.birth_date))
-            )}</p>
+            )} old</p>
           </div>
           <div>
             <label>Date, when want to start</label>
