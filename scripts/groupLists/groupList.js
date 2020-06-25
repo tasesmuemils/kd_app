@@ -6,6 +6,7 @@ import {
   getKeyValuesPairs,
   formPages,
   transformDate,
+  sortStudents,
 } from '../utils/utils.js';
 import {
   groupStudentTmpl,
@@ -30,6 +31,7 @@ const formModal = document.querySelector('.modal');
 // When card is clicked, clicked = false
 function sliderClickHandling(sliderWrapper) {
   sliderWrapper.childNodes.forEach(card => (card.dataset.clicked = 'false'));
+  document.querySelector('.sortOptions').selectedIndex = 0;
 }
 
 // Create a slider card deppending on how many groups there are
@@ -47,6 +49,24 @@ function sliderData(groupData, students) {
       // If groups tables name attribute = group name from server, shows table
       if (table.dataset.group_name === groupData.group_name) {
         table.style.display = 'grid';
+        // FILTERS
+        const sortTableRows = [
+          ...document.querySelectorAll(
+            `.table-style[data-group_name="${groupData.group_name}"] .table-row`
+          ),
+        ];
+        const sortOptions = document.querySelector('.sortOptions');
+        console.log(sortTableRows, sortOptions);
+
+        sortOptions.addEventListener('change', () => {
+          sortStudents(
+            sortOptions,
+            sortTableRows,
+            document.querySelector(
+              `.table-style[data-group_name="${groupData.group_name}"]`
+            )
+          );
+        });
       }
     });
   });

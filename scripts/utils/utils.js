@@ -124,3 +124,37 @@ export function formValidation(formStudentInputs) {
   });
   return valid;
 }
+
+// SORT AND SEARCH
+
+// SORT
+export function sortStudents(sortOptions, arraySort, studentTable) {
+  arraySort.sort((a, b) => {
+    if (sortOptions.selectedIndex === 1) {
+      if (
+        a.firstElementChild.lastElementChild.lastElementChild.textContent <
+        b.firstElementChild.lastElementChild.lastElementChild.textContent
+      ) {
+        return -1;
+      }
+    } else if (sortOptions.selectedIndex === 2) {
+      if (
+        a.firstElementChild.lastElementChild.lastElementChild.textContent >
+        b.firstElementChild.lastElementChild.lastElementChild.textContent
+      ) {
+        return -1;
+      }
+    } else {
+      return console.log('ELSE');
+    }
+  });
+
+  console.log(arraySort, studentTable);
+  studentTable.innerHTML = '';
+  arraySort.forEach(sortedRow => {
+    studentTable.appendChild(sortedRow);
+  });
+  // for (let i = 0; i < arraySort.length; i++) {
+  //   pokemonList.appendChild(arraySort[i]);
+  // }
+}
