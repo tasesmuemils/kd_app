@@ -169,6 +169,37 @@ export function addToGroupForm() {
     `;
 }
 
+export function createGroupFormTmpl() {
+  return `
+    <form class='cg-form'>
+      <h4>CREATE A GROUP</h4>
+      <div class='cg-form-group'>
+        <div class='input-control'>
+          <input type='text' class='as-form-input' name='group_name' placeholder='Group name' data-validation='string'>
+          <span class="separator"> </span>
+        </div>
+        <div class='input-control'>
+          <div class='icons-list-wrapper'>
+            <h5>Group Icon</h5>
+            <div class='icons-list'>
+              <figure><i class="fab fa-affiliatetheme"></i></figure>
+              <figure><i class="fas fa-anchor"></i></figure>
+              <figure><i class="fas fa-meteor"></i></figure>
+              <figure><i style='background-color: #f4e0f8; color: #ac7ab8;' class="fas fa-baby-carriage"></i></figure>
+              <figure><i class="fas fa-atom"></i></figure>
+              <figure><i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i></figure>
+              <figure><i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i></figure>
+            </div>
+          </div>
+        </div>
+        <div class='as-form-buttons'>
+          <input type='submit' value='SUBMIT' name='form-submit'>
+        </div>
+      </div>
+    </form>  
+  `;
+}
+
 export function wlStudentTmpl(modalData) {
   return `
     <div class="wl-modal">

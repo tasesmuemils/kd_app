@@ -28,19 +28,16 @@ export function transformDate(dbDate) {
     convertedDate = editedConvertedDate;
   }
 
-  console.log(convertedDate.join(', '));
   return convertedDate.join(', ');
 }
 
 // Gets input values form form and tranforms them in to key/values for object
 export function getKeyValuesPairs(formInputs) {
-  console.log(formInputs);
   const emptyObject = {};
   formInputs.map(input => {
     const key = input.name;
     return (emptyObject[key] = `${input.value}`);
   });
-  console.log(emptyObject);
   return emptyObject;
 }
 
@@ -111,7 +108,6 @@ export function formValidation(formStudentInputs) {
   // // If input value is empty
   let valid = true;
   formStudentInputs.forEach(input => {
-    console.log();
     // Error messages element
     const errorMsgEl = input.parentElement.lastElementChild;
     if (input.value === '') {
@@ -144,17 +140,27 @@ export function sortStudents(sortOptions, arraySort, studentTable) {
       ) {
         return -1;
       }
-    } else {
-      return console.log('ELSE');
     }
   });
 
-  console.log(arraySort, studentTable);
   studentTable.innerHTML = '';
   arraySort.forEach(sortedRow => {
     studentTable.appendChild(sortedRow);
   });
-  // for (let i = 0; i < arraySort.length; i++) {
-  //   pokemonList.appendChild(arraySort[i]);
-  // }
 }
+// SORT END
+
+// SEARCH
+export function searchStudent(searchBar, studentItems) {
+  const filterValue = searchBar.value.toLowerCase();
+  studentItems.forEach(item => {
+    const name =
+      item.firstElementChild.lastElementChild.lastElementChild.textContent;
+    if (name.toLowerCase().indexOf(filterValue) > -1) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+// SEARCH END

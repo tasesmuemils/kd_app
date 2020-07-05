@@ -7,10 +7,12 @@ import {
   formPages,
   transformDate,
   sortStudents,
+  searchStudent,
 } from '../utils/utils.js';
 import {
   groupStudentTmpl,
   addToGroupForm,
+  createGroupFormTmpl,
   sliderCardContent,
   studentRowTemplate,
 } from '../utils/templates.js';
@@ -18,14 +20,12 @@ import {
 // Style for date picker
 require('flatpickr/dist/themes/dark.css');
 
-// transformDate(09.06.1993);
-console.log(formatDistanceToNowStrict(new Date(2016, 2, 13)));
-
 // Required variables from html file
 const slider = document.querySelector('.slider');
 const groupListEl = document.querySelector('.group-list');
 const urlGroups = 'http://localhost:3000/groups';
 const addStudentBtn = document.querySelector('.add-student-btn');
+const createGroupBtn = document.querySelector('.create-group-btn');
 const formModal = document.querySelector('.modal');
 
 // When card is clicked, clicked = false
@@ -49,24 +49,36 @@ function sliderData(groupData, students) {
       // If groups tables name attribute = group name from server, shows table
       if (table.dataset.group_name === groupData.group_name) {
         table.style.display = 'grid';
-        // FILTERS
+
+        // FILTERS (SORT/SEARCH)
         const sortTableRows = [
           ...document.querySelectorAll(
             `.table-style[data-group_name="${groupData.group_name}"] .table-row`
           ),
         ];
+        const searchTableRows = document.querySelectorAll(
+          `.table-style[data-group_name="${groupData.group_name}"] .table-row`
+        );
         const sortOptions = document.querySelector('.sortOptions');
-        console.log(sortTableRows, sortOptions);
+        const searchBar = document.querySelector('.searchBar');
 
+        // SORT
         sortOptions.addEventListener('change', () => {
           sortStudents(
             sortOptions,
             sortTableRows,
             document.querySelector(
-              `.table-style[data-group_name="${groupData.group_name}"]`
+              `.table-style[data-group_name="${groupData.group_name}"]  `
             )
           );
         });
+        // SORT END
+
+        // SEARCH
+        searchBar.addEventListener('keyup', () => {
+          searchStudent(searchBar, searchTableRows);
+        });
+        // SEARCH END
       }
     });
   });
@@ -146,7 +158,6 @@ function updateGroupsData(groupData, url) {
 
 // Creates and opens modal for group list item
 function groupModal(modal, modalData, groupData) {
-  console.log(groupData, modalData);
   transformDate(modalData.birth_date);
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
@@ -198,14 +209,12 @@ function groupModal(modal, modalData, groupData) {
       input.classList.remove('.disabled-input');
       input.classList.add('enabled-input');
     });
-    console.log(capturedInputs);
   });
 
   // Save edited students data
   saveBtn.addEventListener('click', e => {
     e.preventDefault();
     const capturedInputsArray = [...capturedInputs];
-    console.log(capturedInputsArray);
     editBtn.classList.remove('hide');
     saveBtn.classList.add('hide');
     capturedInputs.forEach(input => {
@@ -232,14 +241,13 @@ function groupModal(modal, modalData, groupData) {
 }
 
 // Creates and opens form modal to add student to group list
-function groupForm(modal) {
+function groupStudentForm(modal) {
   modal.classList.add('modal-open');
   const innerModal = modal.firstElementChild;
   innerModal.innerHTML = addToGroupForm();
 
   // Getting group names from sliderCard to add group ID to new student
   const groupNamesEl = [...document.querySelectorAll('.sliderCard h5')];
-  console.log(groupNamesEl);
   groupNamesEl
     .map(
       el => `<option value="${el.dataset.groupid}">${el.textContent}</option>`
@@ -256,7 +264,6 @@ function groupForm(modal) {
   // Selecting form and form tabs, also index for first tab
   const formSubmit = document.querySelector('.as-form');
   const formInputsArray = [...formSubmit.querySelectorAll('.as-form-input')];
-  console.log(getKeyValuesPairs(formInputsArray));
   const formTab = document.querySelectorAll('.tab');
 
   // Date format with flatpickr
@@ -298,5 +305,16 @@ function groupForm(modal) {
   formSubmit.addEventListener('submit', formSubmitData);
 }
 
-// adds event to button, which opens group form
-addStudentBtn.addEventListener('click', () => groupForm(formModal));
+function createGroupForm(modal) {
+  console.log('test');
+  modal.classList.add('modal-open');
+  const innerModal = modal.firstElementChild;
+  innerModal.innerHTML = createGroupFormTmpl();
+
+  // Adds close button to modal
+  modalClose(modal, innerModal);
+}
+
+// adds event to button, which opens group student form
+addStudentBtn.addEventListener('click', () => groupStudentForm(formModal));
+createGroupBtn.addEventListener('click', () => createGroupForm(formModal));
