@@ -1,4 +1,3 @@
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import flatpickr from 'flatpickr';
 import {
   genderTranform,
@@ -12,6 +11,7 @@ import {
 import {
   groupStudentTmpl,
   addToGroupForm,
+  groupIconsList,
   createGroupFormTmpl,
   sliderCardContent,
   studentRowTemplate,
@@ -35,7 +35,7 @@ function sliderClickHandling(sliderWrapper) {
 }
 
 // Create a slider card deppending on how many groups there are
-function sliderData(groupData, students) {
+function sliderData(groupData) {
   const sliderInnerCard = document.createElement('div');
   sliderInnerCard.classList.add('sliderCard');
   sliderInnerCard.setAttribute('data-group_name', groupData.group_name);
@@ -82,24 +82,32 @@ function sliderData(groupData, students) {
       }
     });
   });
-  sliderInnerCard.innerHTML = sliderCardContent(groupData, students);
+  console.log(groupIconsList.book);
+  sliderInnerCard.innerHTML = sliderCardContent(groupData);
   slider.insertAdjacentElement('beforeend', sliderInnerCard);
-  new GroupList(groupData, students, groupListEl);
+  // new GroupList(groupData, students, groupListEl);
 }
 
 // Gets data from groups and groups students
 export async function fetchGroupData(url) {
   const groupResponse = await fetch(url);
   const groupData = await groupResponse.json();
-
-  groupData.forEach(group => {
-    fetch(`${urlGroups}/${group.id}/students`)
-      .then(resp => resp.json())
-      .then(studentsData => sliderData(group, studentsData));
+  console.log(groupData.data.groups);
+  groupData.data.groups.forEach(group => {
+    sliderData(group);
   });
+
+  // groupData.forEach(group => {
+  //   fetch(`${urlGroups}/${group.id}/students`)
+  //     .then(resp => resp.json())
+  //     .then(studentsData => {
+  //       console.log(studentsData);
+  //       sliderData(group, studentsData);
+  //     });
+  // });
 }
 
-fetchGroupData(urlGroups);
+fetchGroupData('https://dzelzs.lv/kindergarten/v1/group/fetchAllGroups');
 
 // Create GroupList Object
 export function GroupList(groupData, studentsData, tableWrapper) {
@@ -311,8 +319,64 @@ function createGroupForm(modal) {
   const innerModal = modal.firstElementChild;
   innerModal.innerHTML = createGroupFormTmpl();
 
+  const formSubmitCreateGroup = document.querySelector('.cg-form');
+
+  const iconsList = formSubmitCreateGroup.querySelectorAll('.group-icon');
+  console.log(iconsList);
+
+  iconsList.forEach(icon => {
+    icon.addEventListener('click', () => {
+      iconsList.forEach(i => {
+        if (
+          i.firstElementChild.classList.contains('active-icon') ||
+          i.firstElementChild.classList.contains('cg-form-input')
+        ) {
+          i.firstElementChild.classList.remove('active-icon', 'cg-form-input');
+        }
+      });
+
+      icon.firstElementChild.classList.add('active-icon', 'cg-form-input');
+    });
+  });
+
   // Adds close button to modal
   modalClose(modal, innerModal);
+
+  function formSubmit(e) {
+    e.preventDefault();
+
+    const formInputsArray = [
+      ...formSubmitCreateGroup.querySelectorAll('.cg-form-input'),
+    ];
+    const convertedObject = {
+      name: formInputsArray[0].value,
+      icon: formInputsArray[1].getAttribute('name'),
+    };
+    console.log(convertedObject);
+
+    fetch('https://dzelzs.lv/kindergarten/v1/group/createGroup/', {
+      method: 'POST',
+      body: JSON.stringify({ input: { group: convertedObject } }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        modal.classList.remove('modal-open');
+        slider.innerHTML = '';
+        fetch('https://dzelzs.lv/kindergarten/v1/group/fetchAllGroups')
+          .then(resp => resp.json())
+          .then(groups => {
+            console.log(groups);
+            groups.data.groups.forEach(group => {
+              sliderData(group);
+            });
+          });
+      });
+  }
+
+  formSubmitCreateGroup.addEventListener('submit', formSubmit);
 }
 
 // adds event to button, which opens group student form

@@ -175,20 +175,20 @@ export function createGroupFormTmpl() {
       <h4>CREATE A GROUP</h4>
       <div class='cg-form-group'>
         <div class='input-control'>
-          <input type='text' class='as-form-input' name='group_name' placeholder='Group name' data-validation='string'>
+          <input type='text' class='cg-form-input' name='name' placeholder='Group name' data-validation='string'>
           <span class="separator"> </span>
         </div>
         <div class='input-control'>
           <div class='icons-list-wrapper'>
             <h5>Group Icon</h5>
             <div class='icons-list'>
-              <figure><i class="fab fa-affiliatetheme"></i></figure>
-              <figure><i class="fas fa-anchor"></i></figure>
-              <figure><i class="fas fa-meteor"></i></figure>
-              <figure><i style='background-color: #f4e0f8; color: #ac7ab8;' class="fas fa-baby-carriage"></i></figure>
-              <figure><i class="fas fa-atom"></i></figure>
-              <figure><i style='background-color: #FFEFE0; color: #e5ae44;' i class='fas fa-book-reader'></i></figure>
-              <figure><i style='background-color: #cbe4f9; color: #4C90C3;' i class='far fa-sun'></i></figure>
+              <figure class="group-icon"><i style='background-color: #ffd2a9; color: #de7c0e;' class="fas fa-asterisk" name="asterik"></i></figure>
+              <figure class="group-icon"><i style='background-color: #cbffad; color: #55a752;' class="fas fa-anchor" name="anchor"></i></figure>
+              <figure class="group-icon"><i style='background-color: #ffd5d5; color: #ff6464;' class="fas fa-meteor" name="meteor"></i></figure>
+              <figure class="group-icon"><i style='background-color: #f4e0f8; color: #ac7ab8;' class="fas fa-baby-carriage" name="carriage"></i></figure>
+              <figure class="group-icon"><i style='background-color: #e0f0e9; color: #749387;' class="fas fa-atom" name="atom"></i></figure>
+              <figure class="group-icon"><i style='background-color: #FFEFE0; color: #e5ae44;' class='fas fa-book-reader' name="book"></i></figure>
+              <figure class="group-icon"><i style='background-color: #cbe4f9; color: #4C90C3;' class='far fa-sun' name="sun"></i></figure>
             </div>
           </div>
         </div>
@@ -387,12 +387,23 @@ export function addToWlForm() {
     `;
 }
 
-export function sliderCardContent(groupData, students) {
+export const groupIconsList = {
+  sun: `<i style='background-color: #cbe4f9; color: #4C90C3;' class='far fa-sun' name="sun"></i>`,
+  book: `<i style='background-color: #FFEFE0; color: #e5ae44;' class='fas fa-book-reader' name="book"></i>`,
+  atom: `<i style='background-color: #e0f0e9; color: #749387;' class="fas fa-atom" name="atom"></i>`,
+  carriage: `<i style='background-color: #f4e0f8; color: #ac7ab8;' class="fas fa-baby-carriage" name="carriage"></i>`,
+  meteor: `<i style='background-color: #ffd5d5; color: #ff6464;' class="fas fa-meteor" name="meteor"></i>`,
+  anchor: `<i style='background-color: #cbffad; color: #55a752;' class="fas fa-anchor" name="anchor"></i>`,
+  asterik: `<i style='background-color: #ffd2a9; color: #de7c0e;' class="fas fa-asterisk" name="asterik"></i>`,
+};
+
+export function sliderCardContent(groupData) {
   return `
-    <figure>${groupData.group_icon}</figure>
-    <h5 data-groupId='${groupData.id}'>${groupData.group_name}</h5>
-    <p><span>${students.length}</span> /20</p>
+    <figure>${groupIconsList[`${groupData.icon}`]}</figure>
+    <h5 data-groupId='${groupData.id}'>${groupData.name}</h5>
+    
   `;
+  // <p><span>${students.length}</span> /20</p>
 }
 
 export function studentRowTemplate(student, i, genderTranform) {
