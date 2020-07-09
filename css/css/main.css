@@ -24,7 +24,7 @@
   background-color: transparent;
   width: 100%;
   color: #1a233d;
-  padding: 3px 5px;
+  padding: 1px 5px;
   font-size: 18px;
   font-weight: 900;
   border: none;
@@ -403,12 +403,15 @@ body {
   display: flex;
   padding: 0px;
 }
-.header .management-items .add-student-btn {
+.header .management-items .add-student-btn,
+.header .management-items .create-group-btn {
   font-size: 12px;
   letter-spacing: 0px;
   padding-right: 25px;
+  outline: none;
 }
-.header .management-items .add-student-btn i {
+.header .management-items .add-student-btn i,
+.header .management-items .create-group-btn i {
   font-size: 15px;
   margin-right: 15px;
 }
@@ -419,7 +422,7 @@ body {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 300px);
-  padding: 2em;
+  padding: 2em 2em 1em 2em;
 }
 .slider .sliderCard {
   background-color: #ffffff;
@@ -453,6 +456,39 @@ body {
 }
 
 /*SLIDER END*/
+/*FILTERS*/
+.filters .search-sort-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 20%);
+  justify-content: end;
+}
+.filters .search-sort-wrapper .search-bar,
+.filters .search-sort-wrapper .sort-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.filters .search-sort-wrapper .search-bar input {
+  border-radius: 10px;
+  padding: 5px 10px;
+  outline: none;
+  box-shadow: 0px 3px 10px 3px rgba(28, 35, 60, 0.19);
+  border: none;
+}
+.filters .search-sort-wrapper .sort-wrapper select {
+  border-radius: 10px;
+  padding: 7px 10px;
+  outline: none;
+  box-shadow: 0px 3px 10px 3px rgba(28, 35, 60, 0.19);
+  border: none;
+  background-color: #ffffff;
+}
+.filters .search-sort-wrapper .sort-wrapper option {
+  outline: none;
+  padding: 10px 30px;
+}
+.filters .search-sort-wrapper .sort-wrapper select:focus {
+  outline: none;
+}
 /*TABLE*/
 .group-list {
   display: grid;
@@ -516,23 +552,61 @@ body {
 
 /*TABLE END*/
 /*FORM*/
-.as-form {
+.as-form,
+.cg-form,
+.create-person-form,
+.find-person-form {
   display: grid;
   padding: 5px 30px;
 }
-.as-form ::placeholder {
+.as-form .search-bar,
+.cg-form .search-bar,
+.create-person-form .search-bar,
+.find-person-form .search-bar {
+  padding: 20px 30px;
+}
+.as-form .search-bar input,
+.cg-form .search-bar input,
+.create-person-form .search-bar input,
+.find-person-form .search-bar input {
+  width: 400px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  outline: none;
+  box-shadow: 0px 3px 10px 3px rgba(28, 35, 60, 0.19);
+  border: none;
+}
+.as-form h4,
+.cg-form h4,
+.create-person-form h4,
+.find-person-form h4 {
+  text-align: center;
+}
+.as-form ::placeholder,
+.cg-form ::placeholder,
+.create-person-form ::placeholder,
+.find-person-form ::placeholder {
   color: #636A7F;
 }
-.as-form .tab {
+.as-form .tab,
+.cg-form .tab,
+.create-person-form .tab,
+.find-person-form .tab {
   display: none;
   margin: 10px;
 }
-.as-form .input-control {
+.as-form .input-control,
+.cg-form .input-control,
+.create-person-form .input-control,
+.find-person-form .input-control {
   position: relative;
   display: grid;
   padding-bottom: 20px;
 }
-.as-form .separator {
+.as-form .separator,
+.cg-form .separator,
+.create-person-form .separator,
+.find-person-form .separator {
   height: 2px;
   width: 100%;
   background-color: #1a233d;
@@ -542,7 +616,10 @@ body {
   opacity: 0;
   transition: all 0.3s linear;
 }
-.as-form input {
+.as-form input,
+.cg-form input,
+.create-person-form input,
+.find-person-form input {
   background-color: transparent;
   margin: 0px 0;
   padding: 10px;
@@ -551,12 +628,21 @@ body {
   outline: none;
   border-bottom: 1px solid #636A7F;
 }
-.as-form input:focus + .separator {
+.as-form input:focus + .separator,
+.cg-form input:focus + .separator,
+.create-person-form input:focus + .separator,
+.find-person-form input:focus + .separator {
   transform: scaleX(1) translateY(-2px);
   opacity: 1;
 }
 .as-form input[type=submit],
-.as-form .btn {
+.as-form .btn,
+.cg-form input[type=submit],
+.cg-form .btn,
+.create-person-form input[type=submit],
+.create-person-form .btn,
+.find-person-form input[type=submit],
+.find-person-form .btn {
   background-color: #1a233d;
   color: #F1F5FC;
   padding: 7px 15px;
@@ -569,16 +655,25 @@ body {
   font-size: 12px;
   letter-spacing: 0px;
 }
-.as-form .as-form-buttons {
+.as-form .as-form-buttons,
+.cg-form .as-form-buttons,
+.create-person-form .as-form-buttons,
+.find-person-form .as-form-buttons {
   display: grid;
   justify-content: center;
   font-family: "Inter", sans-serif;
 }
-.as-form .as-form-buttons button {
+.as-form .as-form-buttons button,
+.cg-form .as-form-buttons button,
+.create-person-form .as-form-buttons button,
+.find-person-form .as-form-buttons button {
   font-size: 12px;
   letter-spacing: 0px;
 }
-.as-form .as-form-select select {
+.as-form select,
+.cg-form select,
+.create-person-form select,
+.find-person-form select {
   color: #636A7F;
   border: none;
   border-bottom: 1px solid #636A7F;
@@ -587,15 +682,24 @@ body {
   background: transparent;
   background-image: none;
 }
-.as-form .as-form-select option {
+.as-form option,
+.cg-form option,
+.create-person-form option,
+.find-person-form option {
   background-color: transparent;
   outline: none;
   padding: 10px;
 }
-.as-form .as-form-select select:focus {
+.as-form select:focus,
+.cg-form select:focus,
+.create-person-form select:focus,
+.find-person-form select:focus {
   outline: none;
 }
-.as-form .error-msg {
+.as-form .error-msg,
+.cg-form .error-msg,
+.create-person-form .error-msg,
+.find-person-form .error-msg {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -604,8 +708,70 @@ body {
   opacity: 0;
   transition: all 0.5s;
 }
-.as-form .input-err-msg {
+.as-form .input-err-msg,
+.cg-form .input-err-msg,
+.create-person-form .input-err-msg,
+.find-person-form .input-err-msg {
   opacity: 1;
+}
+.as-form .cg-form-group,
+.cg-form .cg-form-group,
+.create-person-form .cg-form-group,
+.find-person-form .cg-form-group {
+  display: grid;
+  justify-content: center;
+}
+.as-form .cg-form-group .icons-list-wrapper,
+.cg-form .cg-form-group .icons-list-wrapper,
+.create-person-form .cg-form-group .icons-list-wrapper,
+.find-person-form .cg-form-group .icons-list-wrapper {
+  display: grid;
+  justify-content: center;
+}
+.as-form .cg-form-group .icons-list-wrapper h5,
+.cg-form .cg-form-group .icons-list-wrapper h5,
+.create-person-form .cg-form-group .icons-list-wrapper h5,
+.find-person-form .cg-form-group .icons-list-wrapper h5 {
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+}
+.as-form .cg-form-group .icons-list-wrapper .icons-list,
+.cg-form .cg-form-group .icons-list-wrapper .icons-list,
+.create-person-form .cg-form-group .icons-list-wrapper .icons-list,
+.find-person-form .cg-form-group .icons-list-wrapper .icons-list {
+  display: flex;
+  padding: 10px;
+}
+.as-form .cg-form-group .icons-list-wrapper .icons-list figure,
+.cg-form .cg-form-group .icons-list-wrapper .icons-list figure,
+.create-person-form .cg-form-group .icons-list-wrapper .icons-list figure,
+.find-person-form .cg-form-group .icons-list-wrapper .icons-list figure {
+  margin: 2px 10px;
+}
+.as-form .cg-form-group .icons-list-wrapper .icons-list figure i,
+.cg-form .cg-form-group .icons-list-wrapper .icons-list figure i,
+.create-person-form .cg-form-group .icons-list-wrapper .icons-list figure i,
+.find-person-form .cg-form-group .icons-list-wrapper .icons-list figure i {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px 2px rgba(28, 35, 60, 0.19);
+  transition: 0.3s all;
+}
+.as-form .cg-form-group .icons-list-wrapper .icons-list figure i:hover,
+.cg-form .cg-form-group .icons-list-wrapper .icons-list figure i:hover,
+.create-person-form .cg-form-group .icons-list-wrapper .icons-list figure i:hover,
+.find-person-form .cg-form-group .icons-list-wrapper .icons-list figure i:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+.as-form .cg-form-group .icons-list-wrapper .icons-list figure .active-icon,
+.cg-form .cg-form-group .icons-list-wrapper .icons-list figure .active-icon,
+.create-person-form .cg-form-group .icons-list-wrapper .icons-list figure .active-icon,
+.find-person-form .cg-form-group .icons-list-wrapper .icons-list figure .active-icon {
+  cursor: pointer;
+  transform: translateY(-3px) rotateZ(20deg);
 }
 
 /*FORM END*/
